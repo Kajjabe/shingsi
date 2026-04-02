@@ -8,12 +8,22 @@ theme = 'PaperMod'
     showCodeCopyButtons = true
 
 [params.homeInfoParams]
-    Title = "Salut, c'est Shingsi \U0001F44B"
-    Content = "Bienvenue sur mon blog. Ici je partage mes aventures en cybersécurité."
+    Title = "Bienvenue"
+    Content = "Rapports, cheatsheet et retours d'expérience liés au domaine de la cyber"
 
 [[menu.main]]
-    name = "Posts"
-    url = "/posts/"
+    name = "Rapports"
+    url = "/rapports/"
+    weight = 10
+
+[[menu.main]]
+    name = "Cheatsheet"
+    url = "/cheatsheet/"
+    weight = 10
+
+[[menu.main]]
+    name = "Projets"
+    url = "/projets/"
     weight = 10
 
 [[menu.main]]
