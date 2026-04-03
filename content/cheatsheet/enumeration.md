@@ -2,63 +2,101 @@
 title: "Enumeration"
 date: 2026-04-03T01:28:30+02:00
 draft: false
+showToc: true
+TocOpen: true
 ---
 
-## Scans de base
+## Nmap
 
-### Scan rapide (Top 100 ports)
-`nmap -F <IP>`
-* `-F` : Fast mode (scanne les 100 ports les plus communs au lieu de 1000).
+### TCP Scan
+Scan complet des services avec scripts par défaut.
+```bash
+nmap -sC -sV -p- <IP> -v
+```
 
-### Scan standard (Top 1000 ports)
-`nmap <IP>`
+### UDP Scan
+Scan des ports UDP les plus courants (nécessite sudo).
+```bash
+sudo nmap -sU -sV -F <IP>
+```
+> [!DANGER] Attention les scan UDP sont longs
 
-### Scan complet de tous les ports (65535)
-`nmap -p- <IP>`
-* `-p-` : Scanne tous les ports de 1 à 65535.
+### Options et Modificateurs
 
----
-
-## Énumération Agressive
-
-`nmap -sV -sC -p- -oA nmap_full <IP>`
-
-**Explication des options :**
-* `-sV` : **Version Detection**. Tente de déterminer la version du service (ex: Apache 2.4.41).
-* `-sC` : **Default Scripts**. Lance les scripts de base du moteur NSE (Nmap Scripting Engine) pour détecter des vulnérabilités connues.
-* `-oA nmap_full` : **Output All**. Sauvegarde le résultat dans les 3 formats (Nmap, Grepable, XML)
-
----
-
-## ⚡ Optimisation et Vitesse
-
-### Réglage de la rapidité (Timing)
-Nmap propose 6 niveaux de rapidité (`-T0` à `-T5`).
-* `-T4` : Recommandé pour les CTF (rapide et assez fiable).
-* `-T5` : Très agressif, peut rater des ports si le réseau est instable.
-
-### Ignorer le Ping
-Si une machine ne répond pas au scan de base (pare-feu), forcez le scan :
-`nmap -Pn <IP>`
-* `-Pn` : Considère que l'hôte est actif (ne vérifie pas s'il répond au ping).
+| Option | Fonction | Utilité |
+| :--- | :--- | :--- |
+| `-p-` | Tous les ports | Scanne de 1 à 65535 (indispensable) |
+| `-F` | Mode rapide | Top 100 ports uniquement |
+| `-sC` | Scripts par défaut | Détecte les vulnérabilités basiques |
+| `-sV` | Versions | Identifie la version précise du service |
+| `-sU` | Scan UDP | Pour DNS, SNMP, DHCP, etc. |
+| `-Pn` | No Ping | Ignore si l'hôte répond au ping (pare-feu) |
+| `-T4` | Vitesse (0-5) | 4 est le meilleur compromis rapidité/fiabilité |
+| `-v` | Verbose | Affiche les ports trouvés en temps réel |
+| `-oN file` | Output | Sauvegarde le résultat dans un fichier texte |
+| `-A` | Agressif | Raccourci pour : `-sV -sC -O --traceroute` |
+| `--max-retries` | Limite d'essais | Réduire pour accélérer sur réseau instable |
 
 ---
 
-## Scans Spécifiques
+## Web Fuzzing
 
-### Scan UDP
-Les services comme DNS, SNMP ou DHCP tournent en UDP.
-`sudo nmap -sU --top-ports 100 <IP>`
-* `-sS` : Scan TCP SYN (discret et rapide, nécessite `sudo`).
-* `-sU` : Scan UDP.
+### Gobuster
+exploration de contenu 
+```bash
+gobuster dir -u <URL> -w ~/Documents/lists/SecLists/Discovery/Web-Content/directory-list-2.3-medium.txt
+```
+exploration des sous-domaines
+```bash
+gobuster vhost -u <URL> -w ~/Documents/lists/SecLists/Discovery/DNS/subdomains-top1million-110000.txt --append-domain
+```
+Options
 
----
+| Option | Fonction | Utilité |
+| :--- | :--- | :--- |
+| `-u` | URL | Adresse de la cible (ex: http://10.10.11.1) |
+| `-w` | Wordlist | Chemin vers le dictionnaire (ex: /usr/share/wordlists/...) |
+| `-x` | Extensions | Cherche des fichiers (ex: -x php,js,txt) |
+| `-t` | Threads | Nombre de connexions simultanées (défaut 10, monter à 50 pour plus de vitesse) |
+| `-k` | Insecure | Ignore les erreurs de certificat SSL (pour le HTTPS) |
+| `-o` | Output | Sauvegarde le résultat dans un fichier |
 
-## Astuces
+### ffuf
+Plus rapide et flexible que gobuster.
 
-| Option | Description |
-| :--- | :--- |
-| `-v` | **Verbose**. Affiche les ports au fur et à mesure qu'ils sont trouvés. |
-| `--script vuln` | Vérifie si les services trouvés ont des failles critiques connues. |
-| `-A` | Mode "Agressif" (équivaut à `-sV -sC -O --traceroute`). |
-| `-O` | **OS Detection**. Tente de deviner si c'est du Linux ou du Windows. |
+fuzzing de répertoire
+```bash
+ffuf -u <URL>/FUZZ -w ~/Documents/lists/KaliLists/dirbuster/directory-list-2.3-medium.txt
+```
+
+fuzzing de sous-domaines / vhost
+```bash
+ffuf -u [http://SITE.com](http://SITE.com) -H "Host: FUZZ.SITE.com" -w ~/Documents/lists/SecLists/Discovery/DNS/subdomains-top1million-5000.txt
+```
+Options
+
+| Option | Fonction | Utilité |
+| :--- | :--- | :--- |
+| `-u` | URL | URL cible contenant le mot `FUZZ` |
+| `-w` | Wordlist | Chemin vers le dictionnaire |
+| `-fc` | Filter Code | Cache certains codes HTTP (ex: -fc 404,403) |
+| `-fs` | Filter Size | Cache les réponses d'une taille précise (utile pour ignorer les fausses pages) |
+| `-recursion` | Récursif | Scanne automatiquement les sous-dossiers trouvés |
+| `-v` | Verbose | Affiche l'URL complète pour chaque résultat |
+
+## DNS
+```bash
+dig <URL>
+```
+
+
+## Génération de wordlist 
+```bash
+cewl <URL>/page
+```
+
+## Identification WAF
+```bash
+wafw00f -v <URL>
+```
+
