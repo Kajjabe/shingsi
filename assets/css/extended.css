@@ -1,0 +1,162 @@
+/* On active le design spécial SEULEMENT sur les écrans larges ET si la page a un sommaire */
+@media screen and (min-width: 1100px) {
+    
+    /* 1. On fixe le sommaire à gauche (il n'existe que sur tes pages de contenu) */
+    .toc {
+        position: fixed !important;
+        left: 30px !important;
+        top: 120px !important;
+        width: 380px !important;
+        max-height: 85vh;
+        overflow-y: auto;
+        background: var(--theme) !important;
+        border: 1px solid var(--border) !important;
+        border-radius: 12px;
+        padding: 20px !important;
+        z-index: 99;
+    }
+
+    /* 2. On décale le texte SEULEMENT si le sommaire (.toc) est présent sur la page */
+    body:has(.toc) .main {
+        margin-left: 450px !important;
+        max-width: 1300px !important;
+        width: calc(100% - 500px) !important;
+    }
+}
+
+/* --- SOMMAIRE : Hover ultra-minimaliste --- */
+.toc a {
+    text-decoration: none !important; /* Pas de soulignement par défaut */
+    transition: color 0.2s ease !important;
+}
+
+.toc a:hover {
+    color: #24b8d7 !important; /* Juste le changement de couleur au survol */
+    text-decoration: none !important; /* Toujours pas de soulignement */
+}
+
+/* --- BLOCS DE CODE : Nettoyage des bordures et lignes --- */
+.post-content pre {
+    background: #1d1e20 !important; /* Fond uniforme */
+    border: none !important;        /* Supprime les lignes/bordures noires */
+    box-shadow: none !important;    /* Supprime les ombres portées */
+    border-radius: 8px !important;
+}
+
+.post-content code {
+    border: none !important;
+    background: transparent !important;
+}
+
+/* --- STYLE DES BLOCS D'ALERTE --- */
+.notice {
+    padding: 15px;
+    margin: 20px 0;
+    border-left: 5px solid #ccc;
+    border-radius: 4px;
+    background-color: var(--code-bg); /* S'adapte au mode sombre/clair */
+}
+
+.notice-title {
+    margin: 0 0 10px 0 !important;
+    font-weight: bold;
+    font-size: 0.9em;
+}
+
+.notice-content {
+    font-size: 0.95em;
+    line-height: 1.5;
+}
+
+/* Couleurs spécifiques */
+.notice.info { border-left-color: #3498db; background: rgba(52, 152, 219, 0.1); }
+.notice.info .notice-title { color: #3498db; }
+
+.notice.warning { border-left-color: #f1c40f; background: rgba(241, 196, 15, 0.1); }
+.notice.warning .notice-title { color: #f1c40f; }
+
+.notice.danger { border-left-color: #e74c3c; background: rgba(231, 76, 60, 0.1); }
+.notice.danger .notice-title { color: #e74c3c; }
+
+.notice.success { border-left-color: #2ecc71; background: rgba(46, 204, 113, 0.1); }
+.notice.success .notice-title { color: #2ecc71; }
+
+/* --- DÉGRADÉ GRADUEL DES TITRES --- */
+
+/* h1 - Le plus gros et le plus intense */
+.post-content h1 {
+    color: #24b8d7 !important;
+    opacity: 1;
+    border-bottom: 2px solid rgba(36, 184, 215, 0.3); /* Petite ligne de soulignement */
+    padding-bottom: 10px;
+}
+
+/* h2 - Un peu plus clair/effacé */
+.post-content h2 {
+    color: #24b8d7 !important;
+    opacity: 0.85;
+}
+
+/* h3 - Encore plus clair */
+.post-content h3 {
+    color: #24b8d7 !important;
+    opacity: 0.70;
+}
+
+/* h4 - Le plus discret */
+.post-content h4 {
+    color: #24b8d7 !important;
+    opacity: 0.55;
+    font-style: italic; /* Optionnel : pour bien le différencier */
+}
+
+/* --- PERSONNALISATION DES LISTES --- */
+/* Colore les puces (•) et les numéros (1, 2, 3) */
+.post-content ul li::marker, 
+.post-content ol li::marker {
+    color: #24b8d7 !important;
+    font-weight: bold;
+}
+
+/* --- TEXTE EN GRAS --- */
+/* Un bleu très léger pour les mots importants sans alourdir le texte */
+.post-content strong, 
+.post-content b {
+    color: #24b8d7; 
+    font-weight: 700;
+}
+
+/* --- TABLEAUX (LOOK CYBER) --- */
+/* 1. La première ligne (Entête) */
+.post-content table thead th {
+    color: #24b8d7 !important;
+    border-bottom: 2px solid rgba(36, 184, 215, 0.5) !important;
+    text-transform: uppercase;
+    font-size: 0.85em;
+    letter-spacing: 1px;
+}
+
+/* 2. La première colonne (Souvent les ports ou les commandes) */
+.post-content table tbody tr td:first-child {
+    color: #24b8d7;
+    font-weight: 600;
+    /*background: rgba(36, 184, 215, 0.03);  Un fond très léger pour distinguer la colonne */
+}
+
+/* Petit bonus : On colore les bordures du tableau en bleu discret */
+.post-content table, 
+.post-content table th, 
+.post-content table td {
+    border-color: rgba(36, 184, 215, 0.1) !important;
+}
+
+/* --- CODE EN LIGNE (Simple Backticks) --- */
+.post-content code:not(pre code) {
+    color: #24b8d7 !important;              /* Ton bleu cyber */
+    background-color: rgba(36, 184, 215, 0.1); /* Fond bleu très transparent */
+    padding: 2px 6px !important;            /* Petit espace autour du texte */
+    border-radius: 4px !important;          /* Coins arrondis */
+    font-family: 'Courier New', Courier, monospace; /* Police de caractère type code */
+    font-size: 0.95em;                      /* Taille ajustée */
+    border: 1px solid rgba(36, 184, 215, 0.2); /* Bordure très fine pour le relief */
+}
