@@ -5,6 +5,9 @@ draft: false
 showToc: true
 TocOpen: true
 ---
+{{< notice type="info" >}}
+En cours de création. Je pense fusionner cette page et la page pentestweb.
+{{< /notice >}}
 
 ## Nmap
 
@@ -12,6 +15,10 @@ TocOpen: true
 Scan complet des services avec scripts par défaut.
 ```bash
 nmap -sC -sV -p- <IP> -v
+```
+Scan rapide 
+```bash
+nmap -sV -T4 --top-ports 1000 <IP>
 ```
 
 ### UDP Scan
@@ -46,6 +53,10 @@ exploration de contenu
 ```bash
 gobuster dir -u <URL> -w ~/Documents/lists/SecLists/Discovery/Web-Content/directory-list-2.3-medium.txt
 ```
+```
+gobuster dir -u http://2million.htb -w ~/Documents/lists/SecLists/Discovery/Web-Content/directory-list-2.3-medium.txt -k --exclude-length 162
+```
+
 exploration des sous-domaines
 ```bash
 gobuster vhost -u <URL> -w ~/Documents/lists/SecLists/Discovery/DNS/subdomains-top1million-110000.txt --append-domain
@@ -61,16 +72,37 @@ gobuster vhost -u <URL> -w ~/Documents/lists/SecLists/Discovery/DNS/subdomains-t
 | `-o` | Output | Sauvegarde le résultat dans un fichier |
 
 ### ffuf
-Plus rapide et flexible que gobuster.
 
-fuzzing de répertoire
+`ffuf` est l'outil de brute-force web le plus rapide. Il utilise le mot-clé **FUZZ** pour indiquer où injecter les mots de la liste.
+
+#### Fuzzing de répertoire classique
+**Quand l'utiliser :** Pour découvrir des dossiers cachés à la racine d'un site.
 ```bash
 ffuf -u <URL>/FUZZ -w ~/Documents/lists/KaliLists/dirbuster/directory-list-2.3-medium.txt
 ```
 
-fuzzing de sous-domaines / vhost
+#### Fuzzing de Vhost / Sous-domaines
+**Quand l'utiliser :** Lorsque l'IP héberge plusieurs sites (Virtual Hosts). On modifie l'en-tête `Host` sans changer l'URL.
+* **`-ac`** : Auto-calibration (ignore les fausses pages 200).
+* **`-k`** : Ignore les erreurs de certificats SSL.
+
 ```bash
 ffuf -u [http://SITE.com](http://SITE.com) -H "Host: FUZZ.SITE.com" -w ~/Documents/lists/SecLists/Discovery/DNS/subdomains-top1million-5000.txt
+```
+
+#### Fuzzing avec extensions (Fichiers)
+**Quand l'utiliser :** Pour trouver des fichiers précis comme des scripts PHP, des sauvegardes ou du texte.
+* **`-e`** : Liste d'extensions à tester (ex: `.php`, `.bak`).
+```bash
+ffuf -w ~/Documents/lists/SecLists/Discovery/Web-Content/common.txt -u http://<IP>/FUZZ -e .php,.html,.txt,.bak,.js -v
+```
+
+#### Fuzzing Récursif
+**Quand l'utiliser :** Pour que `ffuf` entre automatiquement dans chaque dossier trouvé et recommence le scan à l'intérieur.
+* **`-recursion`** : Active la recherche dans les sous-dossiers.
+* **`-ic`** : Ignore les commentaires dans la wordlist.
+```bash
+ffuf -w ~/Documents/lists/SecLists/Discovery/Web-Content/directory-list-2.3-medium.txt -ic -v -u http://<IP>/FUZZ -e .html -recursion
 ```
 
 | Option | Fonction | Utilité |
@@ -81,6 +113,31 @@ ffuf -u [http://SITE.com](http://SITE.com) -H "Host: FUZZ.SITE.com" -w ~/Documen
 | `-fs` | Filter Size | Cache les réponses d'une taille précise (utile pour ignorer les fausses pages) |
 | `-recursion` | Récursif | Scanne automatiquement les sous-dossiers trouvés |
 | `-v` | Verbose | Affiche l'URL complète pour chaque résultat |
+---
+
+## curl
+
+`curl` permet d'interagir précisément avec les points d'entrée trouvés par `ffuf`.
+
+#### exemple
+Tester des formulaires de recherche ou des APIs qui nécessitent d'être connecté.
+```bash
+curl -X POST -d '{"search":"flag"}' \
+     -b 'PHPSESSID=9f03g9pvp20u83r8ju4cfoohrq' \
+     -H 'Content-Type: application/json' \
+     http://<IP>/search.php
+```
+
+#### Lexique des drapeaux (Flags)
+| Flag | Description |
+| :--- | :--- |
+| **`-X POST`** | Définit la méthode HTTP (POST, PUT, DELETE). |
+| **`-d`** | "Data" : Le corps de la requête (payload JSON, paramètres). |
+| **`-b`** | "Cookie" : Envoie un cookie de session (ex: PHPSESSID). |
+| **`-H`** | "Header" : Ajoute un en-tête (indispensable pour spécifier `application/json`). |
+| **`-i`** | Affiche les en-têtes de réponse (pour voir les nouveaux cookies). |
+| **`-L`** | Suit les redirections (301/302). |
+
 
 ## DNS
 ```bash

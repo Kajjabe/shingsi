@@ -17,7 +17,7 @@ hydra -l jan -P ../lists/rockyou.txt ssh://10.10.8.84
 
 #### Hashcat
 ```bash
-hashcat -m 1400 -a 0 -o found1.txt F09EDCB1FCEFC6DFB23DC3505A882655FF77375ED8AA2D1C13F640FCCC2D0C85 /~/Documents/lists/KaliLists/rockyou.txt
+hashcat -m 1410 hashes.txt lists/rockyou.txt
 ```
 
 | Hash Type                       | Hashcat Mode ( -m ) | Description                           |
