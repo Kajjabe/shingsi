@@ -19,7 +19,7 @@ Scan des ports UDP les plus courants (nécessite sudo).
 ```bash
 sudo nmap -sU -sV -F <IP>
 ```
-> [!DANGER] Attention les scan UDP sont longs
+> Attention les scan UDP sont longs
 
 ### Options et Modificateurs
 
@@ -50,7 +50,6 @@ exploration des sous-domaines
 ```bash
 gobuster vhost -u <URL> -w ~/Documents/lists/SecLists/Discovery/DNS/subdomains-top1million-110000.txt --append-domain
 ```
-Options
 
 | Option | Fonction | Utilité |
 | :--- | :--- | :--- |
@@ -73,7 +72,6 @@ fuzzing de sous-domaines / vhost
 ```bash
 ffuf -u [http://SITE.com](http://SITE.com) -H "Host: FUZZ.SITE.com" -w ~/Documents/lists/SecLists/Discovery/DNS/subdomains-top1million-5000.txt
 ```
-Options
 
 | Option | Fonction | Utilité |
 | :--- | :--- | :--- |
@@ -88,7 +86,6 @@ Options
 ```bash
 dig <URL>
 ```
-
 
 ## Génération de wordlist 
 ```bash
