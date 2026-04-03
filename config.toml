@@ -1,5 +1,5 @@
 baseURL = 'https://kajjabe.github.io/shingsi/'
-languageCode = 'fr-fr'
+defaultContentLanguage = 'fr'
 title = 'Shingsi'
 theme = 'PaperMod'
 

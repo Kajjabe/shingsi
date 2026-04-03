@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="fr" dir="auto" data-theme="dark">
+
+<head><script src="/shingsi/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=shingsi/livereload" data-no-instant defer></script><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="noindex, nofollow">
+<title>Ports | Shingsi</title>
+<meta name="keywords" content="">
+<meta name="description" content="
+  
+      
+          Port
+          Service
+          Description
+          Action Prioritaire (Pentest)
+      
+  
+  
+      
+          21
+          FTP
+          Transfert de fichiers (souvent non chiffré).
+          Tester anonymous login / Sniffing.
+      
+      
+          22
+          SSH
+          Accès sécurisé à distance (Ligne de commande).
+          Bruteforce / Chercher clés privées.
+      
+      
+          23
+          Telnet
+          Ancêtre du SSH, tout passe en clair.
+          Sniffer les identifiants sur le réseau.
+      
+      
+          25
+          SMTP
+          Envoi de courriers électroniques.
+          Énumérer utilisateurs (VRFY).
+      
+      
+          53
+          DNS
+          Résolution de noms de domaine en IP.
+          Tester le transfert de zone AXFR.
+      
+      
+          80
+          HTTP
+          Protocole web de base (non chiffré).
+          Fuzzing répertoires / Check versions.
+      
+      
+          88
+          Kerberos
+          Authentification réseau (Active Directory).
+          Attaques AS-REP &amp; Kerberoasting.
+      
+      
+          110
+          POP3
+          Récupération de mails (non chiffré).
+          Bruteforce d&rsquo;identifiants.
+      
+      
+          139
+          NetBIOS
+          Session de service pour partage de fichiers.
+          Souvent lié au port 445 (SMB).
+      
+      
+          161
+          SNMP
+          Gestion et monitoring d&rsquo;équipements.
+          Bruteforce Community String.
+      
+      
+          389
+          LDAP
+          Annuaire d&rsquo;utilisateurs et d&rsquo;objets.
+          Énumération d&rsquo;utilisateurs/groupes.
+      
+      
+          443
+          HTTPS
+          Web sécurisé via SSL/TLS.
+          Analyse Certificat (Subdomain leak).
+      
+      
+          445
+          SMB
+          Partage de fichiers/imprimantes (Windows).
+          Null Session / Partages ouverts.
+      
+      
+          1433
+          MSSQL
+          Base de données Microsoft SQL Server.
+          Tester sa / Injections SQL.
+      
+      
+          2049
+          NFS
+          Partage de fichiers (Unix/Linux).
+          Lister les dossiers partagés.
+      
+      
+          3306
+          MySQL
+          Base de données Open Source (Web).
+          Accès distant sans MDP / SQLi.
+      
+      
+          3389
+          RDP
+          Bureau à distance Windows (GUI).
+          Tester BlueKeep / Bruteforce.
+      
+      
+          5432
+          Postgre
+          Base de données SQL avancée.
+          Tester postgres:postgres.
+      
+      
+          5900
+          VNC
+          Contrôle de bureau à distance.
+          Tester l&rsquo;absence de mot de passe.
+      
+      
+          8080
+          HTTP-Alt
+          Port alternatif (Serveurs Web/Admin).
+          Chercher Tomcat, Jenkins, APIs.
+      
+  
+">
+<meta name="author" content="">
+<link rel="canonical" href="http://localhost:1313/shingsi/cheatsheet/ports/">
+<link crossorigin="anonymous" href="/shingsi/assets/css/stylesheet.e89e7af70eb9102beb31bdbfad88d5aff85ffa1e897632cc684c32d65f5bc528.css" integrity="sha256-6J569w65ECvrMb2/rYjVr/hf&#43;h6JdjLMaEwy1l9bxSg=" rel="preload stylesheet" as="style">
+<link rel="icon" href="http://localhost:1313/shingsi/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313/shingsi/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:1313/shingsi/favicon-32x32.png">
+<link rel="apple-touch-icon" href="http://localhost:1313/shingsi/apple-touch-icon.png">
+<link rel="mask-icon" href="http://localhost:1313/shingsi/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="fr" href="http://localhost:1313/shingsi/cheatsheet/ports/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+</noscript>
+<script>
+    if (localStorage.getItem("pref-theme") === "light") {
+        document.querySelector("html").dataset.theme = 'light';
+    }
+
+</script>
+</head>
+<body id="top">
+    <header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="http://localhost:1313/shingsi/" accesskey="h" title="Shingsi (Alt + H)">Shingsi</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="http://localhost:1313/shingsi/cheatsheet/" title="Cheatsheet">
+                    <span>Cheatsheet</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/shingsi/projets/" title="Projets">
+                    <span>Projets</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/shingsi/rapports/" title="Rapports">
+                    <span>Rapports</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/shingsi/tags/" title="Tags">
+                    <span>Tags</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    
+    <h1 class="post-title entry-hint-parent">
+      Ports
+    </h1>
+    <div class="post-meta"><span title='2026-04-03 04:33:34 +0200 CEST'>3 avril 2026</span>
+
+</div>
+  </header> 
+  <div class="post-content"><table>
+  <thead>
+      <tr>
+          <th style="text-align: left">Port</th>
+          <th style="text-align: left">Service</th>
+          <th style="text-align: left">Description</th>
+          <th style="text-align: left">Action Prioritaire (Pentest)</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: left"><strong>21</strong></td>
+          <td style="text-align: left"><strong>FTP</strong></td>
+          <td style="text-align: left">Transfert de fichiers (souvent non chiffré).</td>
+          <td style="text-align: left">Tester <code>anonymous</code> login / Sniffing.</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><strong>22</strong></td>
+          <td style="text-align: left"><strong>SSH</strong></td>
+          <td style="text-align: left">Accès sécurisé à distance (Ligne de commande).</td>
+          <td style="text-align: left">Bruteforce / Chercher clés privées.</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><strong>23</strong></td>
+          <td style="text-align: left"><strong>Telnet</strong></td>
+          <td style="text-align: left">Ancêtre du SSH, tout passe en clair.</td>
+          <td style="text-align: left">Sniffer les identifiants sur le réseau.</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><strong>25</strong></td>
+          <td style="text-align: left"><strong>SMTP</strong></td>
+          <td style="text-align: left">Envoi de courriers électroniques.</td>
+          <td style="text-align: left">Énumérer utilisateurs (<code>VRFY</code>).</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><strong>53</strong></td>
+          <td style="text-align: left"><strong>DNS</strong></td>
+          <td style="text-align: left">Résolution de noms de domaine en IP.</td>
+          <td style="text-align: left">Tester le transfert de zone <code>AXFR</code>.</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><strong>80</strong></td>
+          <td style="text-align: left"><strong>HTTP</strong></td>
+          <td style="text-align: left">Protocole web de base (non chiffré).</td>
+          <td style="text-align: left">Fuzzing répertoires / Check versions.</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><strong>88</strong></td>
+          <td style="text-align: left"><strong>Kerberos</strong></td>
+          <td style="text-align: left">Authentification réseau (Active Directory).</td>
+          <td style="text-align: left">Attaques <code>AS-REP</code> &amp; <code>Kerberoasting</code>.</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><strong>110</strong></td>
+          <td style="text-align: left"><strong>POP3</strong></td>
+          <td style="text-align: left">Récupération de mails (non chiffré).</td>
+          <td style="text-align: left">Bruteforce d&rsquo;identifiants.</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><strong>139</strong></td>
+          <td style="text-align: left"><strong>NetBIOS</strong></td>
+          <td style="text-align: left">Session de service pour partage de fichiers.</td>
+          <td style="text-align: left">Souvent lié au port 445 (SMB).</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><strong>161</strong></td>
+          <td style="text-align: left"><strong>SNMP</strong></td>
+          <td style="text-align: left">Gestion et monitoring d&rsquo;équipements.</td>
+          <td style="text-align: left">Bruteforce <code>Community String</code>.</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><strong>389</strong></td>
+          <td style="text-align: left"><strong>LDAP</strong></td>
+          <td style="text-align: left">Annuaire d&rsquo;utilisateurs et d&rsquo;objets.</td>
+          <td style="text-align: left">Énumération d&rsquo;utilisateurs/groupes.</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><strong>443</strong></td>
+          <td style="text-align: left"><strong>HTTPS</strong></td>
+          <td style="text-align: left">Web sécurisé via SSL/TLS.</td>
+          <td style="text-align: left">Analyse Certificat (Subdomain leak).</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><strong>445</strong></td>
+          <td style="text-align: left"><strong>SMB</strong></td>
+          <td style="text-align: left">Partage de fichiers/imprimantes (Windows).</td>
+          <td style="text-align: left"><code>Null Session</code> / Partages ouverts.</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><strong>1433</strong></td>
+          <td style="text-align: left"><strong>MSSQL</strong></td>
+          <td style="text-align: left">Base de données Microsoft SQL Server.</td>
+          <td style="text-align: left">Tester <code>sa</code> / Injections SQL.</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><strong>2049</strong></td>
+          <td style="text-align: left"><strong>NFS</strong></td>
+          <td style="text-align: left">Partage de fichiers (Unix/Linux).</td>
+          <td style="text-align: left">Lister les dossiers partagés.</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><strong>3306</strong></td>
+          <td style="text-align: left"><strong>MySQL</strong></td>
+          <td style="text-align: left">Base de données Open Source (Web).</td>
+          <td style="text-align: left">Accès distant sans MDP / SQLi.</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><strong>3389</strong></td>
+          <td style="text-align: left"><strong>RDP</strong></td>
+          <td style="text-align: left">Bureau à distance Windows (GUI).</td>
+          <td style="text-align: left">Tester <code>BlueKeep</code> / Bruteforce.</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><strong>5432</strong></td>
+          <td style="text-align: left"><strong>Postgre</strong></td>
+          <td style="text-align: left">Base de données SQL avancée.</td>
+          <td style="text-align: left">Tester <code>postgres:postgres</code>.</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><strong>5900</strong></td>
+          <td style="text-align: left"><strong>VNC</strong></td>
+          <td style="text-align: left">Contrôle de bureau à distance.</td>
+          <td style="text-align: left">Tester l&rsquo;absence de mot de passe.</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><strong>8080</strong></td>
+          <td style="text-align: left"><strong>HTTP-Alt</strong></td>
+          <td style="text-align: left">Port alternatif (Serveurs Web/Admin).</td>
+          <td style="text-align: left">Chercher Tomcat, Jenkins, APIs.</td>
+      </tr>
+  </tbody>
+</table>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+    </ul>
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2026 <a href="http://localhost:1313/shingsi/">Shingsi</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu');
+    if (menu) {
+        
+        const scrollPosition = localStorage.getItem("menu-scroll-position");
+        if (scrollPosition) {
+            menu.scrollLeft = parseInt(scrollPosition, 10);
+        }
+        
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        const html = document.querySelector("html");
+        if (html.dataset.theme === "dark") {
+            html.dataset.theme = 'light';
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            html.dataset.theme = 'dark';
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerHTML = 'Copier';
+
+        function copyingDone() {
+            copybutton.innerHTML = 'Copié !';
+            setTimeout(() => {
+                copybutton.innerHTML = 'Copier';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>

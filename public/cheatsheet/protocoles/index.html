@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="fr" dir="auto" data-theme="dark">
+
+<head><script src="/shingsi/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=shingsi/livereload" data-no-instant defer></script><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="noindex, nofollow">
+<title>Protocoles | Shingsi</title>
+<meta name="keywords" content="">
+<meta name="description" content="Cette cheatsheet regroupe les vecteurs d&rsquo;attaque et commandes d&rsquo;énumération pour les services les plus courants rencontrés en CTF et en environnement réel.
+
+FTP (21) - File Transfer Protocol
+Protocole de transfert de fichiers non chiffré. Très courant pour l&rsquo;exfiltration ou la récupération de configurations.
+Actions Prioritaires
+
+Connexion Anonyme : Tester si l&rsquo;utilisateur anonymous avec un mot de passe vide (ou anonymous) est accepté.
+Exploration : Lister récursivement tous les fichiers accessibles.
+
+Commandes Utiles
+# Vérification via Nmap
+nmap --script ftp-anon,ftp-syst -p 21 &lt;IP&gt;
+
+# Connexion manuelle
+ftp &lt;IP&gt;
+# Login: anonymous | Password: (vide)
+
+# Lister tout récursivement (une fois connecté)
+ls -R
+
+SSH (22) - Secure Shell
+Accès sécurisé en ligne de commande. Difficile à attaquer directement sauf si des versions obsolètes ou des clés privées sont trouvées.">
+<meta name="author" content="">
+<link rel="canonical" href="http://localhost:1313/shingsi/cheatsheet/protocoles/">
+<link crossorigin="anonymous" href="/shingsi/assets/css/stylesheet.e89e7af70eb9102beb31bdbfad88d5aff85ffa1e897632cc684c32d65f5bc528.css" integrity="sha256-6J569w65ECvrMb2/rYjVr/hf&#43;h6JdjLMaEwy1l9bxSg=" rel="preload stylesheet" as="style">
+<link rel="icon" href="http://localhost:1313/shingsi/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313/shingsi/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:1313/shingsi/favicon-32x32.png">
+<link rel="apple-touch-icon" href="http://localhost:1313/shingsi/apple-touch-icon.png">
+<link rel="mask-icon" href="http://localhost:1313/shingsi/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="fr" href="http://localhost:1313/shingsi/cheatsheet/protocoles/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+</noscript>
+<script>
+    if (localStorage.getItem("pref-theme") === "light") {
+        document.querySelector("html").dataset.theme = 'light';
+    }
+
+</script>
+</head>
+<body id="top">
+    <header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="http://localhost:1313/shingsi/" accesskey="h" title="Shingsi (Alt + H)">Shingsi</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="http://localhost:1313/shingsi/cheatsheet/" title="Cheatsheet">
+                    <span>Cheatsheet</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/shingsi/projets/" title="Projets">
+                    <span>Projets</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/shingsi/rapports/" title="Rapports">
+                    <span>Rapports</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/shingsi/tags/" title="Tags">
+                    <span>Tags</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    
+    <h1 class="post-title entry-hint-parent">
+      Protocoles
+    </h1>
+    <div class="post-meta"><span title='2026-04-03 03:33:13 +0200 CEST'>3 avril 2026</span>
+
+</div>
+  </header> <div class="toc">
+    <details  open>
+        <summary accesskey="c" title="(Alt + C)">
+            <span class="details">Sommaire</span>
+        </summary>
+
+        <div class="inner"><ul>
+                <li>
+                    <a href="#ftp-21---file-transfer-protocol" aria-label="FTP (21) - File Transfer Protocol">FTP (21) - File Transfer Protocol</a><ul>
+                        
+                <li>
+                    <a href="#actions-prioritaires" aria-label="Actions Prioritaires">Actions Prioritaires</a></li>
+                <li>
+                    <a href="#commandes-utiles" aria-label="Commandes Utiles">Commandes Utiles</a></li></ul>
+                </li>
+                <li>
+                    <a href="#ssh-22---secure-shell" aria-label="SSH (22) - Secure Shell">SSH (22) - Secure Shell</a><ul>
+                        
+                <li>
+                    <a href="#actions-prioritaires-1" aria-label="Actions Prioritaires">Actions Prioritaires</a></li>
+                <li>
+                    <a href="#commandes-utiles-1" aria-label="Commandes Utiles">Commandes Utiles</a></li></ul>
+                </li>
+                <li>
+                    <a href="#dns-53---domain-name-system" aria-label="DNS (53) - Domain Name System">DNS (53) - Domain Name System</a><ul>
+                        
+                <li>
+                    <a href="#actions-prioritaires-2" aria-label="Actions Prioritaires">Actions Prioritaires</a></li>
+                <li>
+                    <a href="#commandes-utiles-2" aria-label="Commandes Utiles">Commandes Utiles</a></li></ul>
+                </li>
+                <li>
+                    <a href="#smb-445---server-message-block" aria-label="SMB (445) - Server Message Block">SMB (445) - Server Message Block</a><ul>
+                        
+                <li>
+                    <a href="#actions-prioritaires-3" aria-label="Actions Prioritaires">Actions Prioritaires</a></li>
+                <li>
+                    <a href="#commandes-utiles-3" aria-label="Commandes Utiles">Commandes Utiles</a></li></ul>
+                </li>
+                <li>
+                    <a href="#snmp-161" aria-label="SNMP (161)">SNMP (161)</a></li>
+                <li>
+                    <a href="#ldap-389---lightweight-directory-access-protocol" aria-label="LDAP (389) - Lightweight Directory Access Protocol">LDAP (389) - Lightweight Directory Access Protocol</a><ul>
+                        
+                <li>
+                    <a href="#actions-prioritaires-4" aria-label="Actions Prioritaires">Actions Prioritaires</a></li>
+                <li>
+                    <a href="#commandes-utiles-4" aria-label="Commandes Utiles">Commandes Utiles</a></li></ul>
+                </li>
+                <li>
+                    <a href="#nfs-2049---network-file-system" aria-label="NFS (2049) - Network File System">NFS (2049) - Network File System</a><ul>
+                        
+                <li>
+                    <a href="#actions-prioritaires-5" aria-label="Actions Prioritaires">Actions Prioritaires</a></li>
+                <li>
+                    <a href="#commandes-utiles-5" aria-label="Commandes Utiles">Commandes Utiles</a></li></ul>
+                </li>
+                <li>
+                    <a href="#smtp-25---simple-mail-transfer-protocol" aria-label="SMTP (25) - Simple Mail Transfer Protocol">SMTP (25) - Simple Mail Transfer Protocol</a><ul>
+                        
+                <li>
+                    <a href="#actions-prioritaires-6" aria-label="Actions Prioritaires">Actions Prioritaires</a></li>
+                <li>
+                    <a href="#commandes-utiles-6" aria-label="Commandes Utiles">Commandes Utiles</a></li></ul>
+                </li>
+                <li>
+                    <a href="#bases-de-donn%c3%a9es-mysql-3306--mssql-1433" aria-label="Bases de Données (MySQL 3306 / MSSQL 1433)">Bases de Données (MySQL 3306 / MSSQL 1433)</a><ul>
+                        
+                <li>
+                    <a href="#actions-prioritaires-7" aria-label="Actions Prioritaires">Actions Prioritaires</a></li>
+                <li>
+                    <a href="#commandes-utiles-7" aria-label="Commandes Utiles">Commandes Utiles</a>
+                </li>
+            </ul>
+            </li>
+            </ul>
+        </div>
+    </details>
+</div>
+
+  <div class="post-content"><p>Cette cheatsheet regroupe les vecteurs d&rsquo;attaque et commandes d&rsquo;énumération pour les services les plus courants rencontrés en CTF et en environnement réel.</p>
+<hr>
+<h2 id="ftp-21---file-transfer-protocol">FTP (21) - File Transfer Protocol<a hidden class="anchor" aria-hidden="true" href="#ftp-21---file-transfer-protocol">#</a></h2>
+<p>Protocole de transfert de fichiers non chiffré. Très courant pour l&rsquo;exfiltration ou la récupération de configurations.</p>
+<h3 id="actions-prioritaires">Actions Prioritaires<a hidden class="anchor" aria-hidden="true" href="#actions-prioritaires">#</a></h3>
+<ul>
+<li><strong>Connexion Anonyme</strong> : Tester si l&rsquo;utilisateur <code>anonymous</code> avec un mot de passe vide (ou <code>anonymous</code>) est accepté.</li>
+<li><strong>Exploration</strong> : Lister récursivement tous les fichiers accessibles.</li>
+</ul>
+<h3 id="commandes-utiles">Commandes Utiles<a hidden class="anchor" aria-hidden="true" href="#commandes-utiles">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Vérification via Nmap</span>
+</span></span><span style="display:flex;"><span>nmap --script ftp-anon,ftp-syst -p <span style="color:#ae81ff">21</span> &lt;IP&gt;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Connexion manuelle</span>
+</span></span><span style="display:flex;"><span>ftp &lt;IP&gt;
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Login: anonymous | Password: (vide)</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Lister tout récursivement (une fois connecté)</span>
+</span></span><span style="display:flex;"><span>ls -R
+</span></span></code></pre></div><hr>
+<h2 id="ssh-22---secure-shell">SSH (22) - Secure Shell<a hidden class="anchor" aria-hidden="true" href="#ssh-22---secure-shell">#</a></h2>
+<p>Accès sécurisé en ligne de commande. Difficile à attaquer directement sauf si des versions obsolètes ou des clés privées sont trouvées.</p>
+<h3 id="actions-prioritaires-1">Actions Prioritaires<a hidden class="anchor" aria-hidden="true" href="#actions-prioritaires-1">#</a></h3>
+<ul>
+<li><strong>Banner Grabbing</strong> : Identifier la version exacte (peut révéler l&rsquo;OS, ex: <code>Ubuntu-4ubuntu0.3</code>).</li>
+<li><strong>Bruteforce</strong> : À tenter seulement si aucune autre piste n&rsquo;est disponible.</li>
+</ul>
+<h3 id="commandes-utiles-1">Commandes Utiles<a hidden class="anchor" aria-hidden="true" href="#commandes-utiles-1">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Identifier la version</span>
+</span></span><span style="display:flex;"><span>nc -vn &lt;IP&gt; <span style="color:#ae81ff">22</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Audit de sécurité des algos (SSH-Audit)</span>
+</span></span><span style="display:flex;"><span>ssh-audit &lt;IP&gt;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Bruteforce via Hydra</span>
+</span></span><span style="display:flex;"><span>hydra -L users.txt -P passwords.txt ssh://&lt;IP&gt;
+</span></span></code></pre></div><hr>
+<h2 id="dns-53---domain-name-system">DNS (53) - Domain Name System<a hidden class="anchor" aria-hidden="true" href="#dns-53---domain-name-system">#</a></h2>
+<p>Traduit les noms de domaine en adresses IP. Une mauvaise configuration peut révéler toute l&rsquo;infrastructure interne.</p>
+<h3 id="actions-prioritaires-2">Actions Prioritaires<a hidden class="anchor" aria-hidden="true" href="#actions-prioritaires-2">#</a></h3>
+<ul>
+<li><strong>Transfert de Zone (AXFR)</strong> : Tenter de récupérer toute la base de données du domaine.</li>
+<li><strong>Énumération de sous-domaines</strong> : Si l&rsquo;AXFR échoue.</li>
+</ul>
+<h3 id="commandes-utiles-2">Commandes Utiles<a hidden class="anchor" aria-hidden="true" href="#commandes-utiles-2">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Tentative de transfert de zone</span>
+</span></span><span style="display:flex;"><span>dig axfr @&lt;DNS_IP&gt; &lt;DOMAIN&gt;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Énumération simple</span>
+</span></span><span style="display:flex;"><span>host -t ns &lt;DOMAIN&gt;  <span style="color:#75715e"># Chercher les serveurs de noms</span>
+</span></span><span style="display:flex;"><span>host -t mx &lt;DOMAIN&gt;  <span style="color:#75715e"># Chercher les serveurs mails</span>
+</span></span></code></pre></div><hr>
+<h2 id="smb-445---server-message-block">SMB (445) - Server Message Block<a hidden class="anchor" aria-hidden="true" href="#smb-445---server-message-block">#</a></h2>
+<p>Partage de fichiers et d&rsquo;imprimantes Windows. Le vecteur de compromission n°1 en Active Directory.</p>
+<h3 id="actions-prioritaires-3">Actions Prioritaires<a hidden class="anchor" aria-hidden="true" href="#actions-prioritaires-3">#</a></h3>
+<ul>
+<li><strong>Null Session</strong> : Tester l&rsquo;accès sans identifiant.</li>
+<li><strong>Partages ouverts</strong> : Chercher des dossiers <code>Backup</code>, <code>Confidential</code>, ou <code>Users</code>.</li>
+</ul>
+<h3 id="commandes-utiles-3">Commandes Utiles<a hidden class="anchor" aria-hidden="true" href="#commandes-utiles-3">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Énumération complète (Linux)</span>
+</span></span><span style="display:flex;"><span>enum4linux-ng -A &lt;IP&gt;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Lister les partages (Null Session)</span>
+</span></span><span style="display:flex;"><span>smbclient -L //&lt;IP&gt;/ -N
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Se connecter à un partage spécifique</span>
+</span></span><span style="display:flex;"><span>smbclient //&lt;IP&gt;/&lt;SHARE_NAME&gt; -N
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Énumération avancée via CrackMapExec</span>
+</span></span><span style="display:flex;"><span>crackmapexec smb &lt;IP&gt; --shares -u <span style="color:#e6db74">&#39;&#39;</span> -p <span style="color:#e6db74">&#39;&#39;</span>
+</span></span></code></pre></div><hr>
+<h2 id="snmp-161">SNMP (161)<a hidden class="anchor" aria-hidden="true" href="#snmp-161">#</a></h2>
+<hr>
+<h2 id="ldap-389---lightweight-directory-access-protocol">LDAP (389) - Lightweight Directory Access Protocol<a hidden class="anchor" aria-hidden="true" href="#ldap-389---lightweight-directory-access-protocol">#</a></h2>
+<p>Annuaire centralisant les utilisateurs et objets d&rsquo;un réseau (souvent Active Directory).</p>
+<h3 id="actions-prioritaires-4">Actions Prioritaires<a hidden class="anchor" aria-hidden="true" href="#actions-prioritaires-4">#</a></h3>
+<ul>
+<li><strong>Null Bind</strong> : Énumérer sans authentification.</li>
+<li><strong>Extraire les utilisateurs</strong> : Récupérer la liste des comptes pour un futur bruteforce.</li>
+</ul>
+<h3 id="commandes-utiles-4">Commandes Utiles<a hidden class="anchor" aria-hidden="true" href="#commandes-utiles-4">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Énumération du domaine et des objets</span>
+</span></span><span style="display:flex;"><span>ldapsearch -x -h &lt;IP&gt; -s base namingcontexts
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Extraire tous les utilisateurs (si autorisé)</span>
+</span></span><span style="display:flex;"><span>ldapsearch -x -h &lt;IP&gt; -b <span style="color:#e6db74">&#34;dc=EXAMPLE,dc=COM&#34;</span> <span style="color:#e6db74">&#34;(objectClass=user)&#34;</span> sAMAccountName
+</span></span></code></pre></div><hr>
+<h2 id="nfs-2049---network-file-system">NFS (2049) - Network File System<a hidden class="anchor" aria-hidden="true" href="#nfs-2049---network-file-system">#</a></h2>
+<p>Partage de fichiers Unix. Souvent moins sécurisé que SMB.</p>
+<h3 id="actions-prioritaires-5">Actions Prioritaires<a hidden class="anchor" aria-hidden="true" href="#actions-prioritaires-5">#</a></h3>
+<ul>
+<li><strong>Showmount</strong> : Lister les répertoires exportés.</li>
+<li><strong>Mount</strong> : Monter le répertoire localement pour explorer les fichiers.</li>
+</ul>
+<h3 id="commandes-utiles-5">Commandes Utiles<a hidden class="anchor" aria-hidden="true" href="#commandes-utiles-5">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Lister les partages</span>
+</span></span><span style="display:flex;"><span>showmount -e &lt;IP&gt;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Monter un partage localement</span>
+</span></span><span style="display:flex;"><span>mount -t nfs &lt;IP&gt;:/&lt;REMOTE_DIR&gt; /mnt/nfs_temp -nolock
+</span></span></code></pre></div><hr>
+<h2 id="smtp-25---simple-mail-transfer-protocol">SMTP (25) - Simple Mail Transfer Protocol<a hidden class="anchor" aria-hidden="true" href="#smtp-25---simple-mail-transfer-protocol">#</a></h2>
+<p>Envoi de mails. Utile pour confirmer l&rsquo;existence d&rsquo;utilisateurs sur le système.</p>
+<h3 id="actions-prioritaires-6">Actions Prioritaires<a hidden class="anchor" aria-hidden="true" href="#actions-prioritaires-6">#</a></h3>
+<ul>
+<li><strong>Énumération d&rsquo;utilisateurs</strong> : Utiliser les commandes <code>VRFY</code> ou <code>RCPT TO</code>.</li>
+</ul>
+<h3 id="commandes-utiles-6">Commandes Utiles<a hidden class="anchor" aria-hidden="true" href="#commandes-utiles-6">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Via telnet/netcat</span>
+</span></span><span style="display:flex;"><span>nc -vn &lt;IP&gt; <span style="color:#ae81ff">25</span>
+</span></span><span style="display:flex;"><span>VRFY root
+</span></span><span style="display:flex;"><span>VRFY admin
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Via Nmap</span>
+</span></span><span style="display:flex;"><span>nmap --script smtp-enum-users -p <span style="color:#ae81ff">25</span> &lt;IP&gt;
+</span></span></code></pre></div><hr>
+<h2 id="bases-de-données-mysql-3306--mssql-1433">Bases de Données (MySQL 3306 / MSSQL 1433)<a hidden class="anchor" aria-hidden="true" href="#bases-de-données-mysql-3306--mssql-1433">#</a></h2>
+<p>Cibles privilégiées pour l&rsquo;exfiltration de données ou l&rsquo;exécution de commandes (xp_cmdshell).</p>
+<h3 id="actions-prioritaires-7">Actions Prioritaires<a hidden class="anchor" aria-hidden="true" href="#actions-prioritaires-7">#</a></h3>
+<ul>
+<li><strong>Identifiants par défaut</strong> : <code>root:root</code>, <code>sa:password</code>, <code>postgres:postgres</code>.</li>
+<li><strong>Accès distant</strong> : Vérifier si la base accepte les connexions extérieures.</li>
+</ul>
+<h3 id="commandes-utiles-7">Commandes Utiles<a hidden class="anchor" aria-hidden="true" href="#commandes-utiles-7">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># MySQL : Connexion distante</span>
+</span></span><span style="display:flex;"><span>mysql -u root -h &lt;IP&gt; -p
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># MSSQL : Énumération via Nmap</span>
+</span></span><span style="display:flex;"><span>nmap --script ms-sql-info,ms-sql-empty-password -p <span style="color:#ae81ff">1433</span> &lt;IP&gt;
+</span></span></code></pre></div>
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+    </ul>
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2026 <a href="http://localhost:1313/shingsi/">Shingsi</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu');
+    if (menu) {
+        
+        const scrollPosition = localStorage.getItem("menu-scroll-position");
+        if (scrollPosition) {
+            menu.scrollLeft = parseInt(scrollPosition, 10);
+        }
+        
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        const html = document.querySelector("html");
+        if (html.dataset.theme === "dark") {
+            html.dataset.theme = 'light';
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            html.dataset.theme = 'dark';
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerHTML = 'Copier';
+
+        function copyingDone() {
+            copybutton.innerHTML = 'Copié !';
+            setTimeout(() => {
+                copybutton.innerHTML = 'Copier';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>

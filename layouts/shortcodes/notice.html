@@ -1,0 +1,12 @@
+<div class="notice {{ .Get "type" }}">
+    <p class="notice-title">
+        {{ if eq (.Get "type") "warning" }}⚠️ ATTENTION
+        {{ else if eq (.Get "type") "danger" }}🚫 DANGER
+        {{ else if eq (.Get "type") "info" }}💡 INFO
+        {{ else if eq (.Get "type") "success" }}✅ SUCCESS
+        {{ else }}{{ .Get "type" | upper }}{{ end }}
+    </p>
+    <div class="notice-content">
+        {{ .Inner | markdownify }}
+    </div>
+</div>

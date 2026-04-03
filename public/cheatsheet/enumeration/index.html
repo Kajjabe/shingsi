@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="fr" dir="auto" data-theme="dark">
+
+<head><script src="/shingsi/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=shingsi/livereload" data-no-instant defer></script><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="noindex, nofollow">
+<title>Enumeration | Shingsi</title>
+<meta name="keywords" content="">
+<meta name="description" content="Nmap
+TCP Scan
+Scan complet des services avec scripts par défaut.
+nmap -sC -sV -p- &lt;IP&gt; -v
+UDP Scan
+Scan des ports UDP les plus courants (nécessite sudo).
+sudo nmap -sU -sV -F &lt;IP&gt;
+
+Attention les scan UDP sont longs
+
+Options et Modificateurs
+
+  
+      
+          Option
+          Fonction
+          Utilité
+      
+  
+  
+      
+          -p-
+          Tous les ports
+          Scanne de 1 à 65535 (indispensable)
+      
+      
+          -F
+          Mode rapide
+          Top 100 ports uniquement
+      
+      
+          -sC
+          Scripts par défaut
+          Détecte les vulnérabilités basiques
+      
+      
+          -sV
+          Versions
+          Identifie la version précise du service
+      
+      
+          -sU
+          Scan UDP
+          Pour DNS, SNMP, DHCP, etc.
+      
+      
+          -Pn
+          No Ping
+          Ignore si l&rsquo;hôte répond au ping (pare-feu)
+      
+      
+          -T4
+          Vitesse (0-5)
+          4 est le meilleur compromis rapidité/fiabilité
+      
+      
+          -v
+          Verbose
+          Affiche les ports trouvés en temps réel
+      
+      
+          -oN file
+          Output
+          Sauvegarde le résultat dans un fichier texte
+      
+      
+          -A
+          Agressif
+          Raccourci pour : -sV -sC -O --traceroute
+      
+      
+          --max-retries
+          Limite d&rsquo;essais
+          Réduire pour accélérer sur réseau instable
+      
+  
+
+
+Web Fuzzing
+Gobuster
+exploration de contenu">
+<meta name="author" content="">
+<link rel="canonical" href="http://localhost:1313/shingsi/cheatsheet/enumeration/">
+<link crossorigin="anonymous" href="/shingsi/assets/css/stylesheet.e89e7af70eb9102beb31bdbfad88d5aff85ffa1e897632cc684c32d65f5bc528.css" integrity="sha256-6J569w65ECvrMb2/rYjVr/hf&#43;h6JdjLMaEwy1l9bxSg=" rel="preload stylesheet" as="style">
+<link rel="icon" href="http://localhost:1313/shingsi/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313/shingsi/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:1313/shingsi/favicon-32x32.png">
+<link rel="apple-touch-icon" href="http://localhost:1313/shingsi/apple-touch-icon.png">
+<link rel="mask-icon" href="http://localhost:1313/shingsi/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="fr" href="http://localhost:1313/shingsi/cheatsheet/enumeration/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+</noscript>
+<script>
+    if (localStorage.getItem("pref-theme") === "light") {
+        document.querySelector("html").dataset.theme = 'light';
+    }
+
+</script>
+</head>
+<body id="top">
+    <header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="http://localhost:1313/shingsi/" accesskey="h" title="Shingsi (Alt + H)">Shingsi</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="http://localhost:1313/shingsi/cheatsheet/" title="Cheatsheet">
+                    <span>Cheatsheet</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/shingsi/projets/" title="Projets">
+                    <span>Projets</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/shingsi/rapports/" title="Rapports">
+                    <span>Rapports</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/shingsi/tags/" title="Tags">
+                    <span>Tags</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    
+    <h1 class="post-title entry-hint-parent">
+      Enumeration
+    </h1>
+    <div class="post-meta"><span title='2026-04-03 01:28:30 +0200 CEST'>3 avril 2026</span>
+
+</div>
+  </header> <div class="toc">
+    <details  open>
+        <summary accesskey="c" title="(Alt + C)">
+            <span class="details">Sommaire</span>
+        </summary>
+
+        <div class="inner"><ul>
+                <li>
+                    <a href="#nmap" aria-label="Nmap">Nmap</a><ul>
+                        
+                <li>
+                    <a href="#tcp-scan" aria-label="TCP Scan">TCP Scan</a></li>
+                <li>
+                    <a href="#udp-scan" aria-label="UDP Scan">UDP Scan</a></li>
+                <li>
+                    <a href="#options-et-modificateurs" aria-label="Options et Modificateurs">Options et Modificateurs</a></li></ul>
+                </li>
+                <li>
+                    <a href="#web-fuzzing" aria-label="Web Fuzzing">Web Fuzzing</a><ul>
+                        
+                <li>
+                    <a href="#gobuster" aria-label="Gobuster">Gobuster</a></li>
+                <li>
+                    <a href="#ffuf" aria-label="ffuf">ffuf</a></li></ul>
+                </li>
+                <li>
+                    <a href="#dns" aria-label="DNS">DNS</a></li>
+                <li>
+                    <a href="#g%c3%a9n%c3%a9ration-de-wordlist" aria-label="Génération de wordlist">Génération de wordlist</a></li>
+                <li>
+                    <a href="#identification-waf" aria-label="Identification WAF">Identification WAF</a>
+                </li>
+            </ul>
+        </div>
+    </details>
+</div>
+
+  <div class="post-content"><h2 id="nmap">Nmap<a hidden class="anchor" aria-hidden="true" href="#nmap">#</a></h2>
+<h3 id="tcp-scan">TCP Scan<a hidden class="anchor" aria-hidden="true" href="#tcp-scan">#</a></h3>
+<p>Scan complet des services avec scripts par défaut.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>nmap -sC -sV -p- &lt;IP&gt; -v
+</span></span></code></pre></div><h3 id="udp-scan">UDP Scan<a hidden class="anchor" aria-hidden="true" href="#udp-scan">#</a></h3>
+<p>Scan des ports UDP les plus courants (nécessite sudo).</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo nmap -sU -sV -F &lt;IP&gt;
+</span></span></code></pre></div><blockquote>
+<p>Attention les scan UDP sont longs</p>
+</blockquote>
+<h3 id="options-et-modificateurs">Options et Modificateurs<a hidden class="anchor" aria-hidden="true" href="#options-et-modificateurs">#</a></h3>
+<table>
+  <thead>
+      <tr>
+          <th style="text-align: left">Option</th>
+          <th style="text-align: left">Fonction</th>
+          <th style="text-align: left">Utilité</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: left"><code>-p-</code></td>
+          <td style="text-align: left">Tous les ports</td>
+          <td style="text-align: left">Scanne de 1 à 65535 (indispensable)</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><code>-F</code></td>
+          <td style="text-align: left">Mode rapide</td>
+          <td style="text-align: left">Top 100 ports uniquement</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><code>-sC</code></td>
+          <td style="text-align: left">Scripts par défaut</td>
+          <td style="text-align: left">Détecte les vulnérabilités basiques</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><code>-sV</code></td>
+          <td style="text-align: left">Versions</td>
+          <td style="text-align: left">Identifie la version précise du service</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><code>-sU</code></td>
+          <td style="text-align: left">Scan UDP</td>
+          <td style="text-align: left">Pour DNS, SNMP, DHCP, etc.</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><code>-Pn</code></td>
+          <td style="text-align: left">No Ping</td>
+          <td style="text-align: left">Ignore si l&rsquo;hôte répond au ping (pare-feu)</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><code>-T4</code></td>
+          <td style="text-align: left">Vitesse (0-5)</td>
+          <td style="text-align: left">4 est le meilleur compromis rapidité/fiabilité</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><code>-v</code></td>
+          <td style="text-align: left">Verbose</td>
+          <td style="text-align: left">Affiche les ports trouvés en temps réel</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><code>-oN file</code></td>
+          <td style="text-align: left">Output</td>
+          <td style="text-align: left">Sauvegarde le résultat dans un fichier texte</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><code>-A</code></td>
+          <td style="text-align: left">Agressif</td>
+          <td style="text-align: left">Raccourci pour : <code>-sV -sC -O --traceroute</code></td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><code>--max-retries</code></td>
+          <td style="text-align: left">Limite d&rsquo;essais</td>
+          <td style="text-align: left">Réduire pour accélérer sur réseau instable</td>
+      </tr>
+  </tbody>
+</table>
+<hr>
+<h2 id="web-fuzzing">Web Fuzzing<a hidden class="anchor" aria-hidden="true" href="#web-fuzzing">#</a></h2>
+<h3 id="gobuster">Gobuster<a hidden class="anchor" aria-hidden="true" href="#gobuster">#</a></h3>
+<p>exploration de contenu</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>gobuster dir -u &lt;URL&gt; -w ~/Documents/lists/SecLists/Discovery/Web-Content/directory-list-2.3-medium.txt
+</span></span></code></pre></div><p>exploration des sous-domaines</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>gobuster vhost -u &lt;URL&gt; -w ~/Documents/lists/SecLists/Discovery/DNS/subdomains-top1million-110000.txt --append-domain
+</span></span></code></pre></div><table>
+  <thead>
+      <tr>
+          <th style="text-align: left">Option</th>
+          <th style="text-align: left">Fonction</th>
+          <th style="text-align: left">Utilité</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: left"><code>-u</code></td>
+          <td style="text-align: left">URL</td>
+          <td style="text-align: left">Adresse de la cible (ex: http://10.10.11.1)</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><code>-w</code></td>
+          <td style="text-align: left">Wordlist</td>
+          <td style="text-align: left">Chemin vers le dictionnaire (ex: /usr/share/wordlists/&hellip;)</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><code>-x</code></td>
+          <td style="text-align: left">Extensions</td>
+          <td style="text-align: left">Cherche des fichiers (ex: -x php,js,txt)</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><code>-t</code></td>
+          <td style="text-align: left">Threads</td>
+          <td style="text-align: left">Nombre de connexions simultanées (défaut 10, monter à 50 pour plus de vitesse)</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><code>-k</code></td>
+          <td style="text-align: left">Insecure</td>
+          <td style="text-align: left">Ignore les erreurs de certificat SSL (pour le HTTPS)</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><code>-o</code></td>
+          <td style="text-align: left">Output</td>
+          <td style="text-align: left">Sauvegarde le résultat dans un fichier</td>
+      </tr>
+  </tbody>
+</table>
+<h3 id="ffuf">ffuf<a hidden class="anchor" aria-hidden="true" href="#ffuf">#</a></h3>
+<p>Plus rapide et flexible que gobuster.</p>
+<p>fuzzing de répertoire</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>ffuf -u &lt;URL&gt;/FUZZ -w ~/Documents/lists/KaliLists/dirbuster/directory-list-2.3-medium.txt
+</span></span></code></pre></div><p>fuzzing de sous-domaines / vhost</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>ffuf -u <span style="color:#f92672">[</span>http://SITE.com<span style="color:#f92672">](</span>http://SITE.com<span style="color:#f92672">)</span> -H <span style="color:#e6db74">&#34;Host: FUZZ.SITE.com&#34;</span> -w ~/Documents/lists/SecLists/Discovery/DNS/subdomains-top1million-5000.txt
+</span></span></code></pre></div><table>
+  <thead>
+      <tr>
+          <th style="text-align: left">Option</th>
+          <th style="text-align: left">Fonction</th>
+          <th style="text-align: left">Utilité</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: left"><code>-u</code></td>
+          <td style="text-align: left">URL</td>
+          <td style="text-align: left">URL cible contenant le mot <code>FUZZ</code></td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><code>-w</code></td>
+          <td style="text-align: left">Wordlist</td>
+          <td style="text-align: left">Chemin vers le dictionnaire</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><code>-fc</code></td>
+          <td style="text-align: left">Filter Code</td>
+          <td style="text-align: left">Cache certains codes HTTP (ex: -fc 404,403)</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><code>-fs</code></td>
+          <td style="text-align: left">Filter Size</td>
+          <td style="text-align: left">Cache les réponses d&rsquo;une taille précise (utile pour ignorer les fausses pages)</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><code>-recursion</code></td>
+          <td style="text-align: left">Récursif</td>
+          <td style="text-align: left">Scanne automatiquement les sous-dossiers trouvés</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><code>-v</code></td>
+          <td style="text-align: left">Verbose</td>
+          <td style="text-align: left">Affiche l&rsquo;URL complète pour chaque résultat</td>
+      </tr>
+  </tbody>
+</table>
+<h2 id="dns">DNS<a hidden class="anchor" aria-hidden="true" href="#dns">#</a></h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>dig &lt;URL&gt;
+</span></span></code></pre></div><h2 id="génération-de-wordlist">Génération de wordlist<a hidden class="anchor" aria-hidden="true" href="#génération-de-wordlist">#</a></h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>cewl &lt;URL&gt;/page
+</span></span></code></pre></div><h2 id="identification-waf">Identification WAF<a hidden class="anchor" aria-hidden="true" href="#identification-waf">#</a></h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>wafw00f -v &lt;URL&gt;
+</span></span></code></pre></div>
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+    </ul>
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2026 <a href="http://localhost:1313/shingsi/">Shingsi</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu');
+    if (menu) {
+        
+        const scrollPosition = localStorage.getItem("menu-scroll-position");
+        if (scrollPosition) {
+            menu.scrollLeft = parseInt(scrollPosition, 10);
+        }
+        
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        const html = document.querySelector("html");
+        if (html.dataset.theme === "dark") {
+            html.dataset.theme = 'light';
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            html.dataset.theme = 'dark';
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerHTML = 'Copier';
+
+        function copyingDone() {
+            copybutton.innerHTML = 'Copié !';
+            setTimeout(() => {
+                copybutton.innerHTML = 'Copier';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>

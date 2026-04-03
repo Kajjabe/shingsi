@@ -2,24 +2,41 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>http://localhost:1313/tags/cyber/</loc>
+    <loc>http://localhost:1313/shingsi/cheatsheet/</loc>
+    <lastmod>2026-04-03T04:33:34+02:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/shingsi/cheatsheet/ports/</loc>
+    <lastmod>2026-04-03T04:33:34+02:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/shingsi/</loc>
+    <lastmod>2026-04-03T04:33:34+02:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/shingsi/cheatsheet/pentestweb/</loc>
+    <lastmod>2026-04-03T04:17:21+02:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/shingsi/cheatsheet/privesclinux/</loc>
+    <lastmod>2026-04-03T03:31:43+02:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/shingsi/cheatsheet/enumeration/</loc>
+    <lastmod>2026-04-03T01:28:30+02:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/shingsi/autres/</loc>
     <lastmod>2026-04-02T10:25:15+02:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/posts/</loc>
+    <loc>http://localhost:1313/shingsi/tags/cyber/</loc>
     <lastmod>2026-04-02T10:25:15+02:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/</loc>
+    <loc>http://localhost:1313/shingsi/tags/</loc>
     <lastmod>2026-04-02T10:25:15+02:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/</loc>
+    <loc>http://localhost:1313/shingsi/autres/test/</loc>
     <lastmod>2026-04-02T10:25:15+02:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/posts/test/</loc>
+    <loc>http://localhost:1313/shingsi/tags/test/</loc>
     <lastmod>2026-04-02T10:25:15+02:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/test/</loc>
-    <lastmod>2026-04-02T10:25:15+02:00</lastmod>
+    <loc>http://localhost:1313/shingsi/categories/</loc>
   </url><url>
-    <loc>http://localhost:1313/categories/</loc>
+    <loc>http://localhost:1313/shingsi/rapports/</loc>
   </url>
 </urlset>

