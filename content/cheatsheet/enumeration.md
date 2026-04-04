@@ -1,7 +1,7 @@
 ---
 title: "Enumeration"
 date: 2026-04-03T01:28:30+02:00
-draft: false
+draft: true
 showToc: true
 TocOpen: true
 ---
