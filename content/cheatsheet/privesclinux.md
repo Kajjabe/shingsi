@@ -1,7 +1,7 @@
 ---
 title: "Privesclinux"
 date: 2026-04-03T03:31:43+02:00
-draft: false
+draft: true
 showToc: true
 TocOpen: true
 ---

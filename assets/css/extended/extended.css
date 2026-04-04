@@ -107,6 +107,13 @@
 .post-content h4 {
     color: #24b8d7 !important;
     opacity: 0.55;
+   /* font-style: italic;  Optionnel : pour bien le différencier */
+}
+
+/* h5 - Le plus discret */
+.post-content h5 {
+    color: #24b8d7 !important;
+    opacity: 0.50;
     font-style: italic; /* Optionnel : pour bien le différencier */
 }
 
