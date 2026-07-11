@@ -22,30 +22,41 @@ Face à un problème en entretien (ex: "Le site web ne répond plus"), TOUJOURS 
 ### Diagnostic de premier niveau
 Commandes pour comprendre instantanément l'état de santé d'un serveur.
 
-- htop : Vue globale interactive (Processus, CPU, RAM)
-- df -h : Vérifier l'espace disque disponible (Le -h rend la lecture humaine : Go, Mo)
-- free -m : Vérifier l'utilisation de la mémoire RAM en temps réel (en Mo)
-- uptime : Voir la charge système (Load Average) et l'uptime du serveur
+- ```htop``` : Vue globale interactive (Processus, CPU, RAM)
+- ```df -h``` : Vérifier l'espace disque disponible (Le -h rend la lecture humaine : Go, Mo)
+- ```free -m``` : Vérifier l'utilisation de la mémoire RAM en temps réel (en Mo)
+- ```uptime``` : Voir la charge système (Load Average) et l'uptime du serveur
 
 Question piège d'entretien : "Mon df -h dit qu'il reste de l'espace, mais je ne peux plus créer de fichiers. Pourquoi ?"
 Réponse : Saturation des Inodes (la table d'index des fichiers). On vérifie avec df -i.
 
 ### Trouver ce qui sature le disque
 Commande pour trouver les 10 plus gros dossiers/fichiers à partir de la racine :
+```bash
 du -ah / | sort -rh | head -n 10
-
+```
 ---
 
 ## 3. Gestion des Services & Logs
 
 ### Statut et contrôle
-- sudo systemctl status nginx : Vérifier l'état d'un service (ex: nginx)
-- sudo systemctl restart nginx : Redémarrer un service après modification de conf
-
+-  Vérifier l'état d'un service (ex: nginx)
+```bash
+sudo systemctl status nginx
+```
+-  Redémarrer un service après modification de conf
+```bash 
+sudo systemctl restart nginx
+```
 ### Inspection des logs (La clé de la vérité)
-- sudo journalctl -u nginx -f : Lire les logs d'un service géré par Systemd en temps réel
-- sudo tail -f /var/log/syslog : Regarder les erreurs systèmes générales en direct
-
+- Lire les logs d'un service géré par Systemd en temps réel
+```bash
+ sudo journalctl -u nginx -f
+```
+-  Regarder les erreurs systèmes générales en direct
+```bash
+sudo tail -f /var/log/syslog
+```
 ---
 
 ## 4. Analyse Réseau & Ports
